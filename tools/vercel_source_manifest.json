@@ -1,0 +1,303 @@
+{
+  "sourceDeployment": "dpl_BmMGhNokCMpL7WZWY63bdoKTCS9t",
+  "version": "v0.8.23",
+  "cdnPrefix": "https://dmmcy0pwk6bqi.cloudfront.net/",
+  "files": [
+    {
+      "path": ".python-version",
+      "sha1": "2c561ed018185a0ab382c0d28e718aa1debe8756"
+    },
+    {
+      "path": "api/vlog-private.js",
+      "sha1": "37e2d0a40c665fae4e18345cec4a12fe08a77ab6"
+    },
+    {
+      "path": "api/vlog-upload.js",
+      "sha1": "4d102be87d9277ba3458d56aadf4a11cd33336f5"
+    },
+    {
+      "path": "build-v087.sh",
+      "sha1": "f0ebacd5e7cd3fce8a3b5f879d86ef99bcb6eeab"
+    },
+    {
+      "path": "build-v088.sh",
+      "sha1": "52dafe28bdb32644bb6c3ca88a7217dfbe9f56bd"
+    },
+    {
+      "path": "build-v093.sh",
+      "sha1": "144a9f1e6a9efbe457da781f1b18a14f8575ae2b"
+    },
+    {
+      "path": "build-v094.sh",
+      "sha1": "acf0f37fd58bed792761c99358460caf1f16ecf7"
+    },
+    {
+      "path": "build-v095.sh",
+      "sha1": "9a4855b86ba4c2cccecaf45d5117738df19e6ba1"
+    },
+    {
+      "path": "build-v096.sh",
+      "sha1": "5fc941f64485b8cd3ff0e0dbb3339eed60785b27"
+    },
+    {
+      "path": "build-v097.sh",
+      "sha1": "43d4448e61aae99a6d68e795d4279066ecdf45ca"
+    },
+    {
+      "path": "build-v098.sh",
+      "sha1": "7af1bfaa461c97959ef956af34d71954ccdad3f8"
+    },
+    {
+      "path": "build-v099.sh",
+      "sha1": "328b40c9f27755da810da68fc6b962281a3e81ce"
+    },
+    {
+      "path": "build-v100.sh",
+      "sha1": "55ddc0cdaec9cb58b2e626b89e3352c028599430"
+    },
+    {
+      "path": "build-v101.sh",
+      "sha1": "6e5c4129e39e433733ea00de449f638f9ea5fec4"
+    },
+    {
+      "path": "build-v102.sh",
+      "sha1": "c0b449e67f60b1b9827050ef4df0e747df738c3a"
+    },
+    {
+      "path": "build-v103.sh",
+      "sha1": "2c27a4eac72c608302e45707326848a5ec250361"
+    },
+    {
+      "path": "clinic/migrations/0014_instagramentry_visitorsubmission_websitevisit.py",
+      "sha1": "30b528ddc2eeab0ed4e33fcb24c64c108da44ed0"
+    },
+    {
+      "path": "lombardi/wsgi.py",
+      "sha1": "22f797b14cf3846892708584e9f5df879620e3f4"
+    },
+    {
+      "path": "manage.py",
+      "sha1": "b750c886370ac9745b8319ea1c7fc30a51d88b5f"
+    },
+    {
+      "path": "package.json",
+      "sha1": "cdb3257b0098c843f09cd054e417c73e5b352a65"
+    },
+    {
+      "path": "patch-v082.tar.gz",
+      "sha1": "4eb546227812d81b3adefbc4a88707c5e216b927"
+    },
+    {
+      "path": "patch-v083-script.tar.gz",
+      "sha1": "e6cf7fbcf6ea7c067266182a7a3d57c0419eaa2f"
+    },
+    {
+      "path": "patch-v084-assets.tar.gz",
+      "sha1": "fe5fc28f85bb2cf28467ea43a1bee426491ade37"
+    },
+    {
+      "path": "patch-v084-fix.tar.gz",
+      "sha1": "dd993848d946ea89c6ee7c325ce5264a79c09dd2"
+    },
+    {
+      "path": "patch-v085.tar.gz",
+      "sha1": "da5b575cddf10983bd4c1916439ff107975460e8"
+    },
+    {
+      "path": "patch-v086-instagram.tar.gz",
+      "sha1": "51f58196bd98db05abc4ebfdb742d6c8db52aee8"
+    },
+    {
+      "path": "patch-v087.tar.gz",
+      "sha1": "3e999e59337f4e9aebe80deb6b65685746b61f6d"
+    },
+    {
+      "path": "patch-v088.tar.gz",
+      "sha1": "ce63257925fedf546965007848b74a627f338bfe"
+    },
+    {
+      "path": "patch-v089-remove-profile.tar.gz",
+      "sha1": "fddb79dcef9d775d93180160902b23556d6ebca5"
+    },
+    {
+      "path": "patch-v090-campo-grande.tar.gz",
+      "sha1": "c121a8d0a832caf0e94b06bf26672c7af7fcf3ba"
+    },
+    {
+      "path": "patch-v091-precise-map.tar.gz",
+      "sha1": "41c78deec7f229b79710974e3852d6c8c7c85ec6"
+    },
+    {
+      "path": "patch-v092-alegre-location.tar.gz",
+      "sha1": "15baf83cd5fc1707e9ea36a90152fab17ac66e7d"
+    },
+    {
+      "path": "patch-v093.part-0",
+      "sha1": "36a7821df8036312161ee4171781e27898fef231"
+    },
+    {
+      "path": "patch-v093.part-1",
+      "sha1": "69f387c29402621375a119cbcf7b7aaf37af2bea"
+    },
+    {
+      "path": "patch-v093.part-2",
+      "sha1": "99de85433aa9b182e3d735937ab6734aa760e9f4"
+    },
+    {
+      "path": "patch-v095.part-0",
+      "sha1": "3ef6d96666d341a0d51dfb0de0e7fa33b9a439cf"
+    },
+    {
+      "path": "patch-v095.part-1",
+      "sha1": "7603e1e98265e7fc31e67f2e8a9be632a57ba8a9"
+    },
+    {
+      "path": "patch-v095.part-2",
+      "sha1": "4a2235fd7dc86f7154035bf6e9702382e4b8b988"
+    },
+    {
+      "path": "patch-v095.part-3",
+      "sha1": "112f41983edb90fd24c2a4714d8c11c774158bf9"
+    },
+    {
+      "path": "patch-v095.part-4",
+      "sha1": "b9b8a74369ef2700ccc1127eaab2e514b6651460"
+    },
+    {
+      "path": "patch-v098.part-0",
+      "sha1": "0a8d5867cdeda2f0a45149ee4a8a987df381eb9f"
+    },
+    {
+      "path": "patch-v098.part-1",
+      "sha1": "7e9c74566b3dc83880da0a57a90a816f5668c148"
+    },
+    {
+      "path": "patch-v098.part-2",
+      "sha1": "70da037174b041c43b70088111a51cd154617764"
+    },
+    {
+      "path": "patch-v099.tar.gz",
+      "sha1": "5093c6a77fbacae31ab54d8320ba2b4617440208"
+    },
+    {
+      "path": "patch-v100-master.tar.gz",
+      "sha1": "4dedf4284465f5b9fc6c2d5d1eb165e9cbf03d28"
+    },
+    {
+      "path": "patch-v101.part-0",
+      "sha1": "6fa4aae7b7c6369423ea856d767eb0089a3a5fa0"
+    },
+    {
+      "path": "patch-v101.part-1",
+      "sha1": "5c3fdecbc1ef72315804254479ab302c8f323ee4"
+    },
+    {
+      "path": "patch-v101.part-2",
+      "sha1": "7b5d0f327c422308f155ff8b6aab06a4bc1fb3ab"
+    },
+    {
+      "path": "patch-v101.part-3",
+      "sha1": "0716c7b22cc444b57c83ba72c499a3704f5e888f"
+    },
+    {
+      "path": "patch-v102.part-0",
+      "sha1": "026f1d4978c394d5b1ff27001e8f74530c8949c3"
+    },
+    {
+      "path": "patch-v102.part-1",
+      "sha1": "16d2e0a081c56f5a8446d3e31ba5deef11b0353c"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha1": "29b56de76ccad6fcb51ee371ed7aad205efa2ef1"
+    },
+    {
+      "path": "requirements.txt",
+      "sha1": "c4c3c7f256642ce91f381ade0def44013d109ba0"
+    },
+    {
+      "path": "source.tar.gz",
+      "sha1": "a10abb9b85c289c5089c804c26678045e7a1d0a5"
+    },
+    {
+      "path": "update-v060.tar.gz",
+      "sha1": "208fbb60f758cae2e225b3cc877e591dc33313a9"
+    },
+    {
+      "path": "update-v061.tar.gz",
+      "sha1": "65227ac680bb072cdbefef2b4f1c532f33016518"
+    },
+    {
+      "path": "update-v062.tar.gz",
+      "sha1": "81f8e41b329cae17208e9609b8d8f2cc4cb0a54a"
+    },
+    {
+      "path": "update-v063.tar.gz",
+      "sha1": "2fcefe54ead47352e41cb21d8a96de312732b3e8"
+    },
+    {
+      "path": "update-v064.tar.gz",
+      "sha1": "83e8aa107a57574dfb3d13c7e6f2e61dc634299e"
+    },
+    {
+      "path": "update-v065.tar.gz",
+      "sha1": "ae1ad3d65ce5de424488a319c1bcf61413351ea6"
+    },
+    {
+      "path": "v065-fix.tar.gz",
+      "sha1": "37f8ba513e8df2e349ee71472ff2dcc3698f526e"
+    },
+    {
+      "path": "v066-logo.tar.gz",
+      "sha1": "a52e236f7373c708449103d6bc69a90ab37519c7"
+    },
+    {
+      "path": "v067-logo.tar.gz",
+      "sha1": "5f0b38f2e95b20f9f203679c09d7c5140dd729fb"
+    },
+    {
+      "path": "v068-layout.tar.gz",
+      "sha1": "dc94511c04ccbffd10d50dd4daa31d54f4fd1e73"
+    },
+    {
+      "path": "v070-access.tar.gz",
+      "sha1": "fcbb1ef4b75cbb904aa2681795ac41217f0b4e78"
+    },
+    {
+      "path": "v071-maps.tar.gz",
+      "sha1": "e8e6520cc16b722b914fbb8e480cfbf4551585fd"
+    },
+    {
+      "path": "v072-docs.tar.gz",
+      "sha1": "15df11c4f15303abd2a52c8369ad0319a36d4870"
+    },
+    {
+      "path": "v073-bell.tar.gz",
+      "sha1": "d69d53cb6dc7a84cfc6b6b03ff37901c88b6cd1f"
+    },
+    {
+      "path": "v074-change.tar.gz",
+      "sha1": "321ec18e04d2497f328fab10f9521cfcc080a482"
+    },
+    {
+      "path": "v075-roles.tar.gz",
+      "sha1": "c9c90ba4e4ab9e08e5aaa388888e4ac95e3e2b94"
+    },
+    {
+      "path": "v076-registration.tar.gz",
+      "sha1": "624ad1a84b15482f3030718c8642b730d8c7c308"
+    },
+    {
+      "path": "v080-institutional.tar.gz",
+      "sha1": "cfedda56c6b224387027a8b87ed6092516675a90"
+    },
+    {
+      "path": "v081-editorial.tar.gz",
+      "sha1": "9101b0ecba74a6695ffff7b2c4de1d284b85b75f"
+    },
+    {
+      "path": "vercel.json",
+      "sha1": "826be8b00f0044e31e4ec4c123b7e59cc6809510"
+    }
+  ]
+}
