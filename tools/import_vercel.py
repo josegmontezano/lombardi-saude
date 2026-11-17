@@ -61,13 +61,13 @@ def main():
     test_settings = WORK / "lombardi/test_settings.py"
     test_settings.parent.mkdir(parents=True, exist_ok=True)
     test_settings.write_text(
-        "from .settings import *\\n"
-        "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}}\\n"
-        "DEBUG = True\\n"
-        "SECURE_SSL_REDIRECT = False\\n"
-        "SESSION_COOKIE_SECURE = False\\n"
-        "CSRF_COOKIE_SECURE = False\\n"
-        "PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']\\n",
+        "from .settings import *\n"
+        "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}}\n"
+        "DEBUG = True\n"
+        "SECURE_SSL_REDIRECT = False\n"
+        "SESSION_COOKIE_SECURE = False\n"
+        "CSRF_COOKIE_SECURE = False\n"
+        "PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']\n",
         encoding="utf-8",
     )
 
