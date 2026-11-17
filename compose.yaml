@@ -16,7 +16,7 @@ services:
       retries: 20
     networks: [internal]
   django:
-    build: .
+    image: ghcr.io/josegmontezano/lombardi-saude:latest
     restart: unless-stopped
     depends_on:
       db:
