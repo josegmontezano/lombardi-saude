@@ -56,6 +56,21 @@ def main():
         if i % 15 == 0:
             print("Verified", i, "source assets of", len(manifest), flush=True)
 
+    # The source deploy relies on a local test settings module which was not
+    # part of the deployed production files. Create it before any build step.
+    test_settings = WORK / "lombardi/test_settings.py"
+    test_settings.parent.mkdir(parents=True, exist_ok=True)
+    test_settings.write_text(
+        "from .settings import *\\n"
+        "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}}\\n"
+        "DEBUG = True\\n"
+        "SECURE_SSL_REDIRECT = False\\n"
+        "SESSION_COOKIE_SECURE = False\\n"
+        "CSRF_COOKIE_SECURE = False\\n"
+        "PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']\\n",
+        encoding="utf-8",
+    )
+
     # Build against disposable SQLite test settings, not production PostgreSQL.
     env = dict(os.environ)
     env["DJANGO_SETTINGS_MODULE"] = "lombardi.test_settings"
