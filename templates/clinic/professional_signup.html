@@ -1,0 +1,21 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Solicitar cadastro profissional | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-professional-shell"><div class="lx-professional-panel lx-signup-panel">
+<p class="lx-eyebrow">ACESSO RESTRITO · LOMBARDI SAÚDE</p>
+<h1>Solicite seu cadastro</h1>
+<p class="lx-professional-note">Após enviar seus dados, a solicitação ficará pendente. Somente um administrador autorizado pode aprovar ou recusar cadastros e definir suas permissões.</p>
+<form method="post" class="lx-editor-form" autocomplete="on">{% csrf_token %}
+{{ form.non_field_errors }}
+<label for="id_name">Nome completo *</label>{{ form.name }}{{ form.name.errors }}
+<label for="id_email">E-mail *</label>{{ form.email }}{{ form.email.errors }}
+<label for="id_requested_job">Área de atuação *</label>{{ form.requested_job }}{{ form.requested_job.errors }}
+<label for="id_password">Crie uma senha (mínimo 12 caracteres) *</label>{{ form.password }}{{ form.password.errors }}
+<label for="id_password_confirm">Confirme a senha *</label>{{ form.password_confirm }}{{ form.password_confirm.errors }}
+<p class="lx-signup-agreement"><label>{{ form.acknowledge }} <span>Estou ciente de que meu cadastro depende de aprovação do administrador da clínica.</span></label>{{ form.acknowledge.errors }}</p>
+<div class="lx-trap" aria-hidden="true"><label for="id_website">Não preencher</label>{{ form.website }}</div>
+<button class="lx-btn lx-btn-gold" type="submit">Enviar solicitação de cadastro</button>
+</form>
+<p class="lx-access-register">Já tem cadastro? <a href="{% url 'professional_login' %}">Voltar ao login</a></p>
+</div></section>
+{% endblock %}

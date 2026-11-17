@@ -1,0 +1,9 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Catálogo de Protocolos | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page"><div class="eyebrow">AMBIENTE INTERNO · REFERÊNCIA TÉCNICA</div><h1>Catálogo de protocolos</h1>
+<p class="lead">Protocolos e ativos informados pela clínica, com descrições resumidas para organização interna.</p><div class="notice"><strong>AVALIAÇÃO INDIVIDUAL OBRIGATÓRIA:</strong> todos os protocolos são utilizados somente quando a necessidade de cada paciente é identificada em avaliação profissional. Não existe indicação automática, nem uso sem necessidade, e a seleção exige consideração de contraindicações, histórico clínico e acompanhamento.</div>
+<div class="notice"><strong>Importante:</strong> não constitui prescrição, autorização de uso ou comprovação de eficácia. Dose, via, composição, registro, origem e elegibilidade dependem da avaliação do profissional habilitado, ficha técnica da formulação e regras sanitárias vigentes. A StinPharma é referência comercial informada pela clínica; isso não confirma que cada item compõe seu portfólio.</div>
+<div class="protocol-grid">{% for p in protocols %}<article class="protocol-card"><div class="protocol-cat">{{ p.get_category_display }}</div><h3>{{ p.name }}</h3><p>{{ p.description }}</p><small>{{ p.supplier_reference }}</small>{% if not p.medically_reviewed %}<small>Descrição preliminar, pendente de validação clínica</small>{% endif %}</article>{% empty %}<p>Nenhum protocolo cadastrado.</p>{% endfor %}</div>
+<div class="notice">Mounjaro® é medicamento de marca da Eli Lilly, sujeito a prescrição e às indicações aprovadas pela Anvisa. Este cadastro não permite que pacientes selecionem medicamentos ou doses por conta própria.</div>
+</main>{% endblock %}

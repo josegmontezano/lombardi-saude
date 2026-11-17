@@ -1,0 +1,23 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Acesso mestre | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-review-dashboard">
+<header class="lx-review-head">
+<p class="lx-eyebrow">AMBIENTE PRIVADO · GESTÃO E PROFISSIONAL MÉDICO</p>
+<h1>Acesso mestre</h1>
+<p>Administração geral da Lombardi Saúde. Administradores e profissionais médicos previamente aprovados têm acesso ao mesmo painel de gestão, com autenticação e registros preservados.</p>
+</header>
+<div class="lx-review-metrics">
+<article><small>CADASTROS AGUARDANDO APROVAÇÃO</small><strong>{{ pending_count }}</strong><span><a href="{% url 'management_access' %}">Analisar solicitações</a></span></article>
+<article><small>AVALIAÇÕES</small><strong>Gestão</strong><span><a href="{% url 'review_dashboard' %}">NPS e avaliações</a></span></article>
+<article><small>PAINEL PRIVADO</small><strong>Admin</strong><span><a href="/gestao/">Administração Django</a></span></article>
+</div>
+<div class="lx-admin-publishing-hint"><strong>Publicações integradas:</strong> textos, fotografias e vídeos criados na área segura são destinados à página <a href="{% url 'vlog_index' %}">Tirando Dúvidas</a> quando publicados. <a href="{% url 'professional_posts' %}">Gerenciar publicações</a> · <a href="{% url 'professional_post_new' %}">Criar nova publicação</a>.</div>
+<div class="lx-review-tabs">
+<a href="{% url 'management_access' %}">Gestão de cadastros</a>
+<a href="{% url 'professional_posts' %}">Publicações</a>
+<a href="{% url 'review_moderation' %}">Moderação de avaliações</a>
+<a href="{% url 'professional_password_change' %}">Alterar senha</a>
+</div>
+</section>
+{% endblock %}

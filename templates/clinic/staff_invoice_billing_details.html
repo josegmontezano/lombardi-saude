@@ -1,0 +1,26 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Dados para emissão de NFS-e | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page">
+  <div class="eyebrow">FINANCEIRO · DADOS FISCAIS</div>
+  <h1>Dados para emissão</h1>
+  <p class="lead">Solicitação em {{ invoice.created_at|date:'d/m/Y' }} às {{ invoice.created_at|date:'H:i' }}. Situação: <strong>{{ invoice.get_status_display }}</strong>.</p>
+  <div class="notice">Dados fornecidos pelo paciente no momento da solicitação; confira antes de emitir a NFS-e. Informações fiscais são confidenciais e não devem constar em notificações públicas.</div>
+  <section class="card" aria-label="Dados fiscais do paciente">
+    <h2>Tomador do serviço</h2>
+    <div class="reg-grid">
+      <div><p class="muted">Nome completo</p><strong>{{ billing.name|default:'Não informado' }}</strong></div>
+      <div><p class="muted">CPF</p><strong>{% if billing.cpf %}{{ billing.cpf|slice:':3' }}.{{ billing.cpf|slice:'3:6' }}.{{ billing.cpf|slice:'6:9' }}-{{ billing.cpf|slice:'9:11' }}{% else %}Não cadastrado{% endif %}</strong></div>
+      <div><p class="muted">E-mail</p><strong>{{ billing.email|default:'Não informado' }}</strong></div>
+      <div><p class="muted">Telefone</p><strong>{{ billing.phone|default:'Não informado' }}</strong></div>
+      <div><p class="muted">CEP</p><strong>{{ billing.postal_code|default:'Não informado' }}</strong></div>
+      <div><p class="muted">Logradouro</p><strong>{{ billing.address_street|default:'Não informado' }}</strong></div>
+      <div><p class="muted">Número</p><strong>{{ billing.address_number|default:'Não informado' }}</strong></div>
+      <div><p class="muted">Complemento</p><strong>{{ billing.address_complement|default:'—' }}</strong></div>
+      <div><p class="muted">Bairro</p><strong>{{ billing.address_neighborhood|default:'Não informado' }}</strong></div>
+      <div><p class="muted">Município/UF</p><strong>{{ billing.address_city|default:'Não informado' }} / {{ billing.address_state|default:'—' }}</strong></div>
+    </div>
+    <div class="actions"><a class="outline-button" href="{% url 'staff_invoices' %}">Voltar às solicitações</a><a class="button" href="{% url 'respond_invoice' invoice.id %}">Responder solicitação</a></div>
+  </section>
+</main>
+{% endblock %}

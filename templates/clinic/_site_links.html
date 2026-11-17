@@ -1,0 +1,7 @@
+<a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="is-active" aria-current="page"{% endif %}>Início</a>
+<a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="is-active" aria-current="page"{% endif %}>Sobre</a>
+<a href="{% url 'specialties' %}" {% if request.resolver_match.url_name == 'specialties' %}class="is-active" aria-current="page"{% endif %}>Especialidades e Serviços</a>
+<a href="{% url 'vlog_index' %}" {% if request.resolver_match.url_name == 'vlog_index' or request.resolver_match.url_name == 'vlog_detail' %}class="is-active" aria-current="page"{% endif %}>Envie sua dúvida</a>
+<a href="{% url 'instagram_feed' %}" {% if request.resolver_match.url_name == 'instagram_feed' %}class="is-active"{% endif %}>Instagram</a>
+<a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="is-active" aria-current="page"{% endif %}>Contato</a>
+<a href="{% url 'review_page' %}" {% if request.resolver_match.url_name == 'review_page' %}class="is-active" aria-current="page"{% endif %}>Avaliações</a>

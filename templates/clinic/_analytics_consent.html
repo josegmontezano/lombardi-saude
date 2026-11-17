@@ -1,0 +1,6 @@
+{% if request.COOKIES.lx_stats != 'accepted' and request.COOKIES.lx_stats != 'declined' %}
+<aside class="lx-stats-consent" aria-label="Preferências de estatísticas" role="region">
+ <div><strong>Privacidade e estatísticas</strong><p>Podemos medir visitas e localização aproximada (país, estado e município) para melhorar o site? Não armazenamos endereço IP, e-mail nem dados clínicos nas estatísticas. Sua escolha é opcional.</p></div>
+ <form method="post" action="{% url 'analytics_consent' %}">{% csrf_token %}<button name="consent" value="no" type="submit" class="lx-consent-decline">Não permitir</button><button name="consent" value="yes" type="submit" class="lx-consent-accept">Permitir estatísticas</button></form>
+</aside>
+{% endif %}

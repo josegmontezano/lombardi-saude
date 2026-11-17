@@ -1,0 +1,9 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Solicitação recebida | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-professional-shell"><div class="lx-professional-panel">
+<p class="lx-eyebrow">CADASTRO EM ANÁLISE</p><h1>Solicitação recebida</h1>
+<p>Seu cadastro foi encaminhado para aprovação do administrador mestre. Você ainda não pode acessar a área profissional.</p>
+<a class="lx-btn lx-btn-outline" href="{% url 'professional_login' %}">Voltar ao acesso profissional</a>
+</div></section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'clinic/base.html' %}{% block title %}Envie suas dúvidas | Lombardi Saúde{% endblock %}{% block content %}
+<section class="lx-ux-hero"><div><p class="lx-eyebrow">UM CANAL ABERTO PARA VOCÊ</p><h1>Tirando Dúvidas com a <em>Lombardi Saúde</em></h1><p>Participe das nossas conversas. Envie dúvidas e mensagens para análise da equipe. Algumas respostas podem ser publicadas para ajudar outras pessoas, somente com sua autorização.</p></div></section>
+<section class="lx-ux-section"><div class="lx-ux-columns">
+<div><div class="lx-ux-card"><h2>Enviar dúvida ou mensagem</h2><p>O envio é gratuito, não exige login e não substitui consulta. <strong>Evite enviar exames, fotos de pacientes, CPF ou informações de saúde sensíveis.</strong></p>
+<form action="{% url 'community_submit' %}" method="post" class="lx-ux-form">{% csrf_token %}{{ form.non_field_errors }}
+<label for="{{ form.kind.id_for_label }}">{{ form.kind.label }}</label>{{ form.kind }}{{ form.kind.errors }}
+<label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>{{ form.name }}{{ form.name.errors }}
+<label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>{{ form.email }}{{ form.email.errors }}
+<label for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>{{ form.text }}{{ form.text.errors }}
+<div class="lx-honeypot" aria-hidden="true"><label for="{{ form.homepage.id_for_label }}">Não preencher</label>{{ form.homepage }}</div>
+<label class="lx-ux-checkbox">{{ form.publish_authorized }} {{ form.publish_authorized.label }}</label>
+<label class="lx-ux-checkbox">{{ form.show_name }} {{ form.show_name.label }}</label>
+<label class="lx-ux-checkbox">{{ form.privacy_ack }} {{ form.privacy_ack.label }}</label>{{ form.privacy_ack.errors }}
+<p>Confira nossa <a href="{% url 'privacy' %}">política de privacidade</a>. Mensagens passam por moderação; o contato para resposta é reservado.</p>
+<button type="submit" class="lx-btn lx-btn-gold">Enviar à Lombardi Saúde</button></form>
+</div></div>
+<div><div class="lx-ux-card"><p class="lx-eyebrow">RESPONDENDO À COMUNIDADE</p><h2>Mensagens e dúvidas respondidas</h2>
+{% for entry in submissions %}<article class="lx-ux-question"><span class="lx-ux-kind">{{ entry.get_kind_display }}</span><h3>{{ entry.public_author }}</h3><p>{{ entry.text|linebreaksbr }}</p>{% if entry.answer %}<div class="lx-ux-answer"><strong>Lombardi Saúde responde</strong><p>{{ entry.answer|linebreaksbr }}</p></div>{% endif %}{% include 'clinic/_share_buttons.html' with share_title='Perguntas e Respostas · Lombardi Saúde' %}</article>{% empty %}<p>As primeiras mensagens aprovadas aparecerão aqui. Seja o primeiro a participar.</p>{% endfor %}
+</div></div></div><div class="lx-ux-note">As respostas publicadas são informativas, não constituem consulta nem prescrição. Para orientação individualizada, agende com uma de nossas unidades.</div></section>
+{% endblock %}

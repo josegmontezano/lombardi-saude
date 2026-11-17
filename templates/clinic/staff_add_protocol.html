@@ -1,0 +1,4 @@
+{% extends 'clinic/base.html' %}{% block title %}Indicar protocolo | Lombardi Saúde{% endblock %}{% block content %}
+<main class="wrap page narrow"><div class="eyebrow">MÉDICO · INDICAÇÃO INDIVIDUALIZADA</div><h1>Incluir protocolo</h1><p class="lead">Paciente: {{ patient.get_full_name|default:patient.email }}</p>
+<div class="notice"><strong>Indicação exclusivamente médica.</strong> Nenhum protocolo deve ser cadastrado sem necessidade clínica documentada e avaliação de contraindicações. O cadastro não substitui prescrição formal quando exigida.</div>
+<form method="post" class="card form">{% csrf_token %}{{ form.as_p }}<button class="button" type="submit">Registrar indicação e notificar o paciente</button></form></main>{% endblock %}

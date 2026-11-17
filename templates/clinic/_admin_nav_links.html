@@ -1,0 +1,27 @@
+{% if lx_admin_manager %}
+ <a class="lx-admin-navlink {% if lx_admin_active == 'overview' %}is-current{% endif %}" href="{% url 'master_access' %}" {% if lx_admin_active == 'overview' %}aria-current="page"{% endif %}><span aria-hidden="true">⌂</span> Visão geral</a>
+ <a class="lx-admin-navlink" href="{% url 'management_access' %}"><span aria-hidden="true">▦</span> Cadastros e permissões</a>
+{% else %}
+ <a class="lx-admin-navlink {% if lx_admin_active == 'overview' %}is-current{% endif %}" href="{% url 'professional_access_home' %}" {% if lx_admin_active == 'overview' %}aria-current="page"{% endif %}><span aria-hidden="true">⌂</span> Início profissional</a>
+{% endif %}
+{% if lx_admin_publisher %}
+ <div class="lx-admin-nav-group">CONTEÚDO E COMUNICAÇÃO</div>
+ <a class="lx-admin-navlink {% if lx_admin_active == 'posts' %}is-current{% endif %}" href="{% url 'professional_posts' %}" {% if lx_admin_active == 'posts' %}aria-current="page"{% endif %}><span aria-hidden="true">▤</span> Publicações</a>
+ <a class="lx-admin-navlink" href="{% url 'professional_post_new' %}"><span aria-hidden="true">＋</span> Criar publicação</a>
+ <a class="lx-admin-navlink" href="{% url 'vlog_index' %}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> Ver Tirando Dúvidas</a>
+ <a class="lx-admin-navlink {% if lx_admin_active == 'submissions' %}is-current{% endif %}" href="{% url 'professional_submissions' %}" {% if lx_admin_active == 'submissions' %}aria-current="page"{% endif %}><span aria-hidden="true">✉</span> Dúvidas recebidas</a>
+ <a class="lx-admin-navlink {% if lx_admin_active == 'instagram' %}is-current{% endif %}" href="{% url 'professional_instagram' %}" {% if lx_admin_active == 'instagram' %}aria-current="page"{% endif %}><span aria-hidden="true">◎</span> Instagram</a>
+ <div class="lx-admin-nav-group">QUALIDADE E MONITORAMENTO</div>
+ <a class="lx-admin-navlink {% if lx_admin_active == 'reviews' %}is-current{% endif %}" href="{% url 'review_moderation' %}" {% if lx_admin_active == 'reviews' %}aria-current="page"{% endif %}><span aria-hidden="true">☆</span> Avaliações recebidas</a>
+ <a class="lx-admin-navlink {% if lx_admin_active == 'analytics' %}is-current{% endif %}" href="{% url 'professional_analytics' %}" {% if lx_admin_active == 'analytics' %}aria-current="page"{% endif %}><span aria-hidden="true">▥</span> Indicadores de acesso</a>
+ {% if lx_admin_manager %}
+ <a class="lx-admin-navlink {% if lx_admin_active == 'nps' %}is-current{% endif %}" href="{% url 'review_dashboard' %}" {% if lx_admin_active == 'nps' %}aria-current="page"{% endif %}><span aria-hidden="true">◉</span> NPS e evolução</a>
+ {% endif %}
+{% endif %}
+<div class="lx-admin-nav-group">CONTA E SISTEMA</div>
+<a class="lx-admin-navlink {% if lx_admin_active == 'password' %}is-current{% endif %}" href="{% url 'professional_password_change' %}" {% if lx_admin_active == 'password' %}aria-current="page"{% endif %}><span aria-hidden="true">◇</span> Alterar senha</a>
+{% if lx_admin_manager %}
+<a class="lx-admin-navlink" href="/gestao/"><span aria-hidden="true">⚙</span> Administração avançada</a>
+{% endif %}
+<a class="lx-admin-navlink" href="{% url 'home' %}"><span aria-hidden="true">↗</span> Site institucional</a>
+<form method="post" action="{% url 'professional_logout' %}" class="lx-admin-signout">{% csrf_token %}<button type="submit" class="lx-admin-navlink"><span aria-hidden="true">⇥</span> Sair com segurança</button></form>

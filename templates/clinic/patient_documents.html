@@ -1,0 +1,36 @@
+{% extends 'clinic/base.html' %}
+{% block title %}{{ page_title }} | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page narrow"><div class="eyebrow">DOCUMENTOS DO PACIENTE</div><h1>{{ page_title }}</h1>
+{% if kind == 'prescription' %}
+<p class="lead">Leia a transcrição conferida pela equipe. Para imprimir, abra a <strong>receita original em PDF</strong>, emitida pelo profissional.</p>
+{% else %}<p class="lead">Documentos em PDF inseridos pela equipe autorizada para consulta e download.</p>{% endif %}
+{% if demo_account %}<div class="notice">Conta de demonstração: nenhum documento clínico real pode ser visualizado.</div>
+{% elif not can_view %}<div class="notice">A verificação de identidade pela clínica é necessária para liberar documentos clínicos.</div>
+{% else %}
+<section class="card"><h2>Documentos disponíveis</h2>
+{% for doc in documents %}
+<article class="item" style="display:block">
+  <h3>{{ doc.title }}</h3><p><small>Publicado em {{ doc.created_at|date:'d/m/Y H:i' }}</small></p>
+  {% if kind == 'prescription' %}
+    {% if doc.transcription %}
+    <section class="card" aria-label="Transcrição da receita {{ doc.title }}">
+      <h4>Transcrição da receita</h4>
+      <div class="prescription-transcription" style="white-space:pre-wrap;overflow-wrap:anywhere">{{ doc.transcription }}</div>
+      <p><small>Transcrição realizada e conferida pela equipe clínica. Em caso de divergência, prevalece a receita original assinada.</small></p>
+    </section>
+    {% else %}
+    <p class="notice">Documento antigo: a transcrição ainda não foi disponibilizada. Consulte o PDF original.</p>
+    {% endif %}
+    <div class="actions">
+      <a class="button small" href="{% url 'print_original_prescription' doc.pk %}" target="_blank" rel="noopener noreferrer">Imprimir receita original (PDF) ↗</a>
+      <a class="outline-button" href="{% url 'download_document' doc.pk %}">Baixar PDF original</a>
+    </div>
+  {% else %}
+  <a class="button small" href="{% url 'download_document' doc.pk %}">Baixar PDF</a>
+  {% endif %}
+</article>
+{% empty %}<p class="empty">Ainda não há documentos liberados pela equipe.</p>{% endfor %}
+</section>{% endif %}
+<div class="actions"><a class="outline-button" href="{% url 'patient_home' %}">Voltar ao Portal do Paciente</a></div></main>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Meu cadastro completo | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page">
+  <div class="eyebrow">PORTAL DO PACIENTE · IDENTIFICAÇÃO</div>
+  <h1>{% if is_update %}Atualizar meus dados{% else %}Complete seu cadastro{% endif %}</h1>
+  <p class="lead">Olá, {{ request.user.get_full_name|default:request.user.email }}. Preencha sua ficha individual para utilizar o portal, solicitar notas fiscais e manter seus dados atualizados.</p>
+  <div class="notice"><strong>Cadastro inspirado na estrutura do PEC e-SUS APS, adaptado à Lombardi Saúde.</strong> Não existe conexão nem transferência automática de informações para PEC, e-SUS ou CadSUS. Os campos de saúde, autodeclaração, escolaridade e situação social são <strong>opcionais</strong> e não substituem avaliação clínica. O CPF é necessário para a emissão da nota fiscal.</div>
+  <div class="notice">Seus documentos e prontuários somente são liberados após a conferência da identidade pela clínica. Campos identificados com * são obrigatórios; informações adicionais podem ficar em branco. <a href="{% url 'privacy' %}">Aviso de privacidade</a>.</div>
+  <form method="post" class="lx-cadastro" novalidate autocomplete="on">{% csrf_token %}
+    {% if form.non_field_errors %}<div class="flash error" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+    {% for section in groups %}
+    <fieldset class="card reg-section"><legend>{{ section.title }}</legend>
+      <div class="reg-grid">
+        {% for field in section.fields %}
+        <div class="reg-field {% if field.field.widget.input_type == 'checkbox' %}reg-check{% endif %}">
+          <label for="{{ field.id_for_label }}">{% if field.field.widget.input_type == 'checkbox' %}{{ field }} {% endif %}{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+          {% if field.field.widget.input_type != 'checkbox' %}{{ field }}{% endif %}
+          {% if field.help_text %}<p class="muted">{{ field.help_text }}</p>{% endif %}
+          {% if field.errors %}<div class="errorlist" role="alert">{{ field.errors }}</div>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </fieldset>
+    {% endfor %}
+    <div class="actions"><button type="submit" class="button">Salvar e concluir cadastro</button><a class="outline-button" href="{% url 'privacy' %}">Como os dados são tratados</a></div>
+  </form>
+</main>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'clinic/base.html' %}{% load static %}
+{% block title %}Análise profissional de avaliações | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-review-dashboard">
+ <header class="lx-review-head">
+  <p class="lx-eyebrow">ACESSO PRIVADO · LOMBARDI SAÚDE</p>
+  <h1>Análise profissional de avaliações</h1>
+  <p>Confira as avaliações identificadas antes de autorizar sua apresentação pública. Somente o profissional autorizado e a administração podem aprovar ou rejeitar registros. Os comentários e os dados pessoais permanecem internos.</p>
+  <p><strong>{{ pending_count }}</strong> avaliação(ões) aguardando análise em todas as unidades.</p>
+  <div class="lx-review-tabs" role="navigation" aria-label="Selecionar unidade">
+   <a href="?unit=geral&status={{ filter_status }}" {% if unit == 'geral' %}aria-current="page"{% endif %}>Geral</a>
+   <a href="?unit=campo_grande&status={{ filter_status }}" {% if unit == 'campo_grande' %}aria-current="page"{% endif %}>Campo Grande</a>
+   <a href="?unit=alegre&status={{ filter_status }}" {% if unit == 'alegre' %}aria-current="page"{% endif %}>Alegre</a>
+  </div>
+  <div class="lx-review-tabs" role="navigation" aria-label="Filtrar situação">
+   <a href="?unit={{ unit }}&status=pending" {% if filter_status == 'pending' %}aria-current="page"{% endif %}>Pendentes</a>
+   <a href="?unit={{ unit }}&status=approved" {% if filter_status == 'approved' %}aria-current="page"{% endif %}>Aprovadas</a>
+   <a href="?unit={{ unit }}&status=rejected" {% if filter_status == 'rejected' %}aria-current="page"{% endif %}>Não aprovadas</a>
+   <a href="?unit={{ unit }}&status=all" {% if filter_status == 'all' %}aria-current="page"{% endif %}>Todas</a>
+  </div>
+ </header>
+ <section class="lx-review-card">
+  <h2>Avaliações recebidas</h2>
+  <div class="lx-table-scroll"><table class="lx-review-table">
+   <thead><tr><th>Data e unidade</th><th>Paciente (restrito)</th><th>Recepção</th><th>Técnico</th><th>Enfermagem</th><th>Médico</th><th>Comentário (restrito)</th><th>Situação</th><th>Decisão</th></tr></thead>
+   <tbody>{% for item in reviews %}
+    <tr><td>{{ item.created_at|date:"d/m/Y H:i" }}<br><b>{{ item.get_unit_display }}</b></td>
+     <td class="lx-review-moderation-identity"><strong>{{ item.patient_name|default:"Registro anterior" }}</strong><small>{{ item.patient_email|default:"—" }}</small><small>{{ item.patient_phone|default:"—" }}</small></td>
+     <td>{{ item.reception }}/5</td><td>{{ item.nursing_technician }}/5</td><td>{{ item.nursing }}/5</td><td>{{ item.doctor }}/5</td>
+     <td>{{ item.private_comment|default:"—" }}</td>
+     <td><strong>{{ item.get_status_display }}</strong>{% if item.reviewed_by %}<br><small>Revisada em {{ item.reviewed_at|date:"d/m/Y H:i" }} por {{ item.reviewed_by.get_full_name|default:item.reviewed_by.username }}</small>{% endif %}</td>
+     <td><div class="lx-moderation-actions">
+      {% if item.status != 'approved' %}<form method="post" action="{% url 'review_decision' item.pk %}">{% csrf_token %}<button type="submit" name="decision" value="approved">Aprovar</button></form>{% endif %}
+      {% if item.status != 'rejected' %}<form method="post" action="{% url 'review_decision' item.pk %}">{% csrf_token %}<button type="submit" name="decision" value="rejected">Não aprovar</button></form>{% endif %}
+     </div></td></tr>
+   {% empty %}
+   <tr><td colspan="9">Não existem avaliações com este filtro.</td></tr>
+   {% endfor %}</tbody>
+  </table></div>
+  <p class="lx-review-footnote">As decisões são registradas com data e usuário profissional. Notas e comentários originais não podem ser alterados neste painel. O painel gerencial calcula estatísticas de todas as respostas, independentemente da decisão de publicação.</p>
+ </section>
+ {% if user.is_superuser or user.role == 'admin' %}<p><a class="lx-btn lx-btn-outline" href="{% url 'review_dashboard' %}">Acessar painel gerencial de NPS</a></p>{% endif %}
+</section>
+{% endblock %}

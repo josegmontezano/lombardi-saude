@@ -1,0 +1,36 @@
+{% extends 'clinic/base.html' %}{% block title %}Instagram @lombardi.saude | Lombardi Saúde{% endblock %}{% block content %}
+<section class="lx-ux-section lx-ig-official-page"><div class="lx-ux-section-inner">
+ <div class="lx-ig-title"><p class="lx-eyebrow">INSTAGRAM OFICIAL</p><h1>Publicações <em>@lombardi.saude</em></h1></div>
+ <section class="lx-ig-curated-posts" aria-label="Grade de publicações oficiais">
+  <div class="lx-ig-grid-heading"><div><span class="lx-ig-profile-kicker">GALERIA OFICIAL</span>
+  <h2>Publicações do Instagram</h2></div>
+  <p class="lx-ig-grid-counter">{{ total_posts }} publicação{{ total_posts|pluralize:"ões" }} cadastrada{{ total_posts|pluralize:"s" }} · 20 espaços visíveis por página</p></div>
+  <div class="lx-ig-manual-grid">
+  {% for post in posts %}<article class="lx-ig-manual-post">
+   <blockquote class="instagram-media" data-instgrm-permalink="{{ post.permalink }}" data-instgrm-version="14" style="background:#fff;border:1px solid #eee;border-radius:10px;margin:0 auto;max-width:540px;width:100%;">
+    <div class="lx-ig-embed-fallback"><p>Publicação original do Instagram</p><a href="{{ post.permalink }}" target="_blank" rel="noopener noreferrer">Visualizar no Instagram ↗</a></div>
+   </blockquote>
+  </article>{% endfor %}
+  {% for slot in empty_slots %}
+  <article class="lx-ig-manual-post lx-ig-slot" aria-label="Espaço {{ slot }} reservado para publicação oficial">
+    <div class="lx-ig-slot-inner">
+      <div class="lx-ig-slot-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg></div>
+      <span class="lx-ig-slot-number">PUBLICAÇÃO {{ slot|stringformat:"02d" }}</span>
+      <strong>Espaço para publicação</strong>
+      <p>O conteúdo oficial aparecerá aqui quando for incluído pela equipe.</p>
+    </div>
+  </article>
+  {% endfor %}
+  </div>
+  {% if page_obj.has_other_pages %}
+  <nav class="lx-ig-pagination" aria-label="Navegação entre publicações">
+   {% if page_obj.has_previous %}<a class="lx-ig-page-link" href="?pagina={{ page_obj.previous_page_number }}">← Anteriores</a>{% endif %}
+   <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+   {% if page_obj.has_next %}<a class="lx-btn lx-btn-gold" href="?pagina={{ page_obj.next_page_number }}">Ver mais 20 publicações →</a>{% endif %}
+  </nav>
+  {% endif %}
+ </section>
+
+ <p class="lx-ig-privacy-note">O perfil incorporado e as publicações são exibidos pelo próprio Instagram. O Instagram pode aplicar cookies e outras tecnologias ao carregar o conteúdo. Caso a visualização incorporada não esteja disponível, utilize o link do perfil oficial.</p>
+ <script async defer src="https://www.instagram.com/embed.js"></script>
+</div></section>{% endblock %}

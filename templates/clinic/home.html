@@ -1,0 +1,34 @@
+{% extends 'clinic/base.html' %}{% load static %}
+{% block title %}Lombardi Saúde | Cuidado que transforma vidas{% endblock %}
+{% block content %}
+<section class="lx-hero" aria-labelledby="lx-title">
+ <div class="lx-hero-photo"><img src="{% static 'img/hero-hq.webp' %}" alt="Retrato de profissional da área de saúde" fetchpriority="high" srcset="{% static 'img/hero-800.webp' %} 800w, {% static 'img/hero-hq.webp' %} 1365w" sizes="(max-width: 720px) 100vw, 58vw" width="1365" height="2048" decoding="async"></div>
+ <div class="lx-hero-wash" aria-hidden="true"></div>
+ <div class="lx-hero-inner"><div class="lx-hero-copy">
+  <p class="lx-eyebrow">SAÚDE INTEGRAL, CIÊNCIA E BEM-ESTAR</p>
+  <h1 id="lx-title">Cuidado que<br>transforma vidas</h1>
+  <p class="lx-hero-lead">Medicina personalizada, preventiva e baseada em evidências para que você seja a sua melhor versão.</p>
+  <div class="lx-hero-actions"><a href="{% url 'contact' %}" class="lx-btn lx-btn-gold"><svg><use href="#lx-calendar"/></svg> Agende sua consulta <svg class="lx-arrow"><use href="#lx-arrow"/></svg></a><a class="lx-story-link" href="{% url 'about' %}"><span><svg><use href="#lx-play"/></svg></span> Conheça<br>a Lombardi Saúde</a></div>
+  </div><div class="lx-script-note" aria-hidden="true">Mais saúde<br>Mais vida<br>Mais você<i></i></div>
+  <div class="lx-hero-promises"><div><svg><use href="#lx-flower"/></svg><span>Atendimento<br>humanizado</span></div><div><svg><use href="#lx-shield"/></svg><span>Medicina baseada<br>em evidências</span></div><div><svg><use href="#lx-people"/></svg><span>Cuidado<br>personalizado</span></div><div><svg><use href="#lx-star"/></svg><span>Prevenção e<br>qualidade de vida</span></div></div>
+ </div>
+</section>
+<section class="lx-vlog-feature" aria-labelledby="lx-vlog-feature-title">
+ <div class="lx-vlog-feature-inner">
+  <div class="lx-vlog-feature-copy"><p class="lx-eyebrow">UM ESPAÇO PARA INFORMAÇÃO E CUIDADO</p>
+   <h2 id="lx-vlog-feature-title">Tirando Dúvidas com a <em>Lombardi Saúde</em></h2>
+   <p>Artigos, orientações e vídeos com a Dra. Isabella Lombardi sobre saúde, prevenção e bem-estar. O mesmo espaço de informação e cuidado para ler, assistir e compartilhar.</p>
+   <a class="lx-btn lx-btn-gold" href="{% url 'vlog_index' %}" aria-label="Acessar Tirando Dúvidas com a Lombardi Saúde para ler artigos e assistir vídeos"><svg><use href="#lx-play"/></svg> Ler e assistir <svg class="lx-arrow"><use href="#lx-arrow"/></svg></a>
+  </div><div class="lx-vlog-feature-media"><img src="{% static 'img/about-hq.webp' %}" alt="Dra. Isabella Lombardi, conteúdo educativo em saúde" loading="lazy" srcset="{% static 'img/about-800.webp' %} 800w, {% static 'img/about-hq.webp' %} 1364w" sizes="(max-width: 720px) 100vw, 45vw" width="1364" height="2048" decoding="async"><div><svg><use href="#lx-play"/></svg><span>ARTIGOS E VÍDEOS</span></div></div>
+ </div>
+</section>
+
+<section class="lx-booking-band" aria-labelledby="lx-booking-heading">
+ <div class="lx-booking-overlay"></div><div class="lx-booking-content"><p class="lx-eyebrow">AGENDAMENTO</p><h2 id="lx-booking-heading">Seu cuidado começa aqui</h2><p>Entre em contato com nossa equipe para consultar horários e escolher a unidade de atendimento.</p><a href="{% url 'contact' %}" class="lx-btn lx-btn-gold"><svg><use href="#lx-calendar"/></svg> Agendar consulta <svg class="lx-arrow"><use href="#lx-arrow"/></svg></a></div>
+ <div class="lx-contact-options" aria-label="Agendamento e contato por unidade">
+  <article><span>RIO DE JANEIRO</span><h3>Campo Grande</h3><p>Agendamento e orientações.</p><a href="https://wa.me/5521986825542" target="_blank" rel="noopener noreferrer">WhatsApp · (21) 98682-5542 ↗</a></article>
+  <article><span>ESPÍRITO SANTO</span><h3>Alegre</h3><p>Agendamento e orientações.</p><a href="https://wa.me/5528999468688" target="_blank" rel="noopener noreferrer">WhatsApp · (28) 99946-8688 ↗</a></article>
+ </div>
+</section>
+<section class="lx-values-strip" aria-label="Diferenciais da Lombardi Saúde"><div><svg><use href="#lx-people"/></svg><span>Atendimento<br>personalizado</span></div><div><svg><use href="#lx-shield"/></svg><span>Medicina baseada<br>em evidências</span></div><div><svg><use href="#lx-flower"/></svg><span>Prevenção<br>e qualidade de vida</span></div><div><svg><use href="#lx-heart"/></svg><span>Acompanhamento<br>contínuo</span></div><div><svg><use href="#lx-diamond"/></svg><span>Ciência e<br>conhecimento</span></div></section>
+{% endblock %}

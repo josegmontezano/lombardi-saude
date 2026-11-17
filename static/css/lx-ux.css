@@ -1,0 +1,74 @@
+/* Lombardi Saúde · Tirando Dúvidas / comunidade / gestão — v0.8.5 */
+.lx-ux-hero{max-width:1320px;margin:45px auto 15px;padding:55px clamp(22px,5vw,75px);background:#f5efe7;border-radius:16px}
+.lx-ux-hero>div{max-width:950px}.lx-ux-hero h1{font:500 clamp(40px,5.4vw,72px)/1.06 'Cormorant Garamond',Georgia,serif;margin:12px 0 18px;letter-spacing:-.025em;color:#352b22}.lx-ux-hero h1 em,.lx-ux-section h2 em{color:#9e7845;font-weight:500}.lx-ux-hero p:not(.lx-eyebrow){font-size:clamp(15px,1.4vw,18px);line-height:1.78;color:#6b5f52;max-width:830px}
+.lx-ux-section{max-width:1320px;margin:0 auto;padding:65px clamp(18px,3vw,40px)}.lx-ux-section-inner{max-width:1200px;margin:auto}.lx-ux-section h2,.lx-ux-card h2{font:500 clamp(31px,3.2vw,43px)/1.12 'Cormorant Garamond',Georgia,serif;color:#393028;margin:0 0 22px}.lx-ux-section p{line-height:1.7;color:#645b54}.lx-ux-columns{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.lx-ux-card{background:white;border:1px solid #e8ddcf;border-radius:15px;padding:clamp(22px,3vw,35px);box-shadow:0 9px 31px #31200d0a;margin-bottom:25px}.lx-ux-card h3{font:500 27px/1.15 'Cormorant Garamond',Georgia,serif;color:#4b3a28;margin:10px 0}.lx-ux-card a{color:#a87934}.lx-ux-form{display:flex;flex-direction:column;gap:11px;max-width:790px}.lx-ux-form>label:not(.lx-ux-checkbox){font-weight:700;color:#494038;font-size:13px;margin-top:6px}.lx-ux-form input:not([type=checkbox]),.lx-ux-form select,.lx-ux-form textarea{width:100%;border:1px solid #d8cbbc;background:#fffcf8;border-radius:8px;padding:12px 14px;line-height:1.55;font:inherit;color:#3a3028;max-width:100%}.lx-ux-form textarea{resize:vertical}.lx-ux-form input:focus,.lx-ux-form textarea:focus{outline:2px solid #ae8b5a;outline-offset:1px}.lx-ux-checkbox{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#5d534a;line-height:1.5}.lx-ux-checkbox input{margin-top:4px;accent-color:#a78250}.lx-ux-form button{align-self:start;cursor:pointer}.lx-ux-note{background:#f6f1e9;border-left:3px solid #aa8753;padding:19px 23px;font-size:13px;line-height:1.7;margin:22px 0;color:#6c625a}.lx-ux-muted{font-size:13px!important;color:#81776c!important}.lx-honeypot{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}.lx-ux-question{padding:25px 0;border-top:1px solid #e9dfd3}.lx-ux-question:first-of-type{border-top:0}.lx-ux-kind{font-size:11px;color:#a7804b;text-transform:uppercase;letter-spacing:.1em}.lx-ux-question>p{white-space:normal}.lx-ux-answer{padding:17px 22px;border-radius:9px;background:#f9f4ec}.lx-ux-answer strong{color:#896336}.lx-ux-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:25px}.lx-ux-section-inner>h2{margin-top:42px}.lx-ux-section-inner>h2:first-child{margin-top:0}
+.lx-share-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:15px 0 0;border-top:1px solid #ebdfcd;margin-top:22px;font-size:13px}.lx-share-actions>span:first-child{color:#7b6f65;font-weight:600;margin-right:4px}.lx-share-actions>a,.lx-share-actions>button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #d4b991;border-radius:26px;background:#fff9f0;color:#9c6c31;font:600 12px/1.2 Arial,sans-serif;padding:9px 12px;cursor:pointer}.lx-share-actions>a:hover,.lx-share-actions>button:hover{background:#a87b41;color:white}.lx-share-feedback{font-size:12px;color:#806136}.lx-social-feed-nudge{text-align:center;margin:30px auto 4px;color:#6e6255}
+.lx-ig-stories{display:flex;gap:20px;overflow-x:auto;padding:12px 4px 28px;scroll-snap-type:x mandatory}.lx-ig-story{flex:0 0 150px;scroll-snap-align:start;text-align:center}.lx-ig-story>a{display:flex;flex-direction:column;text-decoration:none;gap:9px;align-items:center}.lx-ig-story img,.lx-ig-story a>span{width:130px;height:130px;object-fit:cover;border-radius:50%;padding:4px;border:3px solid #b38b55;background:#fff;display:grid;place-items:center}.lx-ig-story strong{font-size:12px}.lx-ig-feed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.lx-ig-card{border-radius:14px;border:1px solid #e5daca;overflow:hidden;background:#fff}.lx-ig-image{aspect-ratio:1/1;display:grid;place-items:center;background:#f1e8dc;color:#9b7543}.lx-ig-image img{display:block;width:100%;height:100%;object-fit:cover}.lx-ig-card>div{padding:18px}.lx-ig-card p{font-size:13px}.lx-ig-card small{color:#92764f}
+.lx-stats-consent{position:fixed;bottom:18px;left:18px;right:18px;z-index:10005;margin:0 auto;max-width:1050px;box-shadow:0 16px 45px #0003;border:1px solid #cfb68f;border-radius:15px;background:#fffefb;padding:20px 24px;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center}.lx-stats-consent strong{color:#4e3929}.lx-stats-consent p{margin:4px 0 0;color:#6d6052;font-size:12px;line-height:1.55}.lx-stats-consent form{display:flex;gap:9px;flex-wrap:wrap}.lx-stats-consent button{border:1px solid #a68553;border-radius:25px;padding:10px 15px;font-weight:700;cursor:pointer}.lx-consent-accept{background:#a68553;color:#fff}.lx-consent-decline{background:white;color:#806445}
+.lx-metrics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:25px 0 30px}.lx-metric{padding:24px;background:#fbf6ee;border:1px solid #ead9c3;border-radius:13px;display:flex;flex-direction:column;gap:5px}.lx-metric small{font-size:10px;letter-spacing:.12em;color:#90734c}.lx-metric strong{font:500 44px/1.15 Georgia,serif;color:#3d3023}.lx-metric span{font-size:13px;color:#63594e}.lx-analytics-columns{display:grid;grid-template-columns:1fr 1fr;gap:25px}.lx-geo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.lx-analytic-table{border-collapse:collapse;width:100%;font-size:13px}.lx-analytic-table th,.lx-analytic-table td{text-align:left;padding:10px;border-bottom:1px solid #e9e2d9}.lx-analytic-table th{background:#fbf6ef;color:#786448}.lx-table-wrap{overflow-x:auto}.lx-hour{display:grid;grid-template-columns:48px 1fr 35px;gap:9px;align-items:center;padding:5px 0;font:12px Arial,sans-serif}.lx-hour-track{height:8px;background:#f4e9d8;border-radius:7px;overflow:hidden}.lx-hour-track span{display:block;height:100%;width:0;background:#ab824c;border-radius:7px}.lx-analytics-days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-bottom:24px}.lx-day{display:flex;flex-direction:column;align-items:center;padding:11px 4px;background:#faf5ed;border-radius:7px;font-size:11px;gap:4px}.lx-day strong{font-size:16px;color:#9b7540}
+@media(max-width:1020px){.lx-ig-feed{grid-template-columns:repeat(2,minmax(0,1fr))}.lx-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lx-geo-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.lx-ux-columns,.lx-analytics-columns{grid-template-columns:1fr}.lx-ig-feed,.lx-geo-grid{grid-template-columns:1fr}.lx-stats-consent{grid-template-columns:1fr;gap:12px;left:8px;right:8px;bottom:8px;padding:14px}.lx-metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lx-analytics-days{grid-template-columns:repeat(5,minmax(0,1fr))}.lx-ux-hero{margin:16px 12px 0;padding:35px 24px}.lx-ux-section{padding:35px 15px}.lx-stats-consent form{justify-content:flex-start}.lx-ig-story{flex-basis:125px}.lx-ig-story img,.lx-ig-story a>span{width:108px;height:108px}}
+
+@media(min-width:721px){.lx-vlog-hero-main h1{font-size:clamp(41px,4.6vw,68px)}}
+
+/* v0.8.6 — Instagram: public posts only, manually embedded, no account API */
+.lx-ig-official-page{padding-top:42px}.lx-ig-title{text-align:center;margin:0 auto 34px}.lx-ig-title h1{font:500 clamp(38px,5vw,62px)/1.12 'Cormorant Garamond',Georgia,serif}.lx-ig-title em{color:#a88550}
+.lx-ig-manual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}.lx-ig-manual-post{min-width:0}.lx-ig-embed-fallback{padding:32px;text-align:center;color:#806c55}.lx-ig-embed-fallback a{display:inline-block;margin-top:6px;color:#927044}.lx-ig-privacy-note{font-size:13px;line-height:1.7;color:#6e655b;text-align:center;margin:30px 0}.lx-ig-empty{max-width:650px;margin:0 auto;padding:65px 22px;text-align:center;background:#fbf8f3;border:1px solid #e7d8c5;border-radius:14px}.lx-ig-empty h2{font:500 38px 'Cormorant Garamond',Georgia,serif}.lx-ig-empty p{line-height:1.7}.lx-ig-manual-form{display:flex;flex-direction:column;gap:12px}.lx-ig-manual-form input{width:100%;max-width:630px;min-height:42px;padding:11px;border:1px solid #d8cab8;border-radius:6px}.lx-ig-manual-form button{align-self:flex-start}.lx-ig-admin-row{padding:16px 0;display:flex;gap:18px;align-items:center;justify-content:space-between;border-top:1px solid #e5dcd1;flex-wrap:wrap}.lx-ig-admin-row a{overflow-wrap:anywhere}.lx-ig-admin-row button{font-size:12px}@media(max-width:780px){.lx-ig-manual-grid{grid-template-columns:1fr;gap:18px}}
+
+/* Lombardi Saúde v0.8.7: perfil oficial do Instagram integrado */
+.lx-ig-official-page{max-width:1180px;margin-inline:auto;padding-top:52px}
+.lx-ig-official-page .lx-ux-section-inner{max-width:1080px}
+.lx-ig-title{margin-bottom:38px}
+.lx-ig-title h1{font-size:clamp(38px,5.2vw,70px);line-height:1.08;overflow-wrap:anywhere}
+.lx-ig-profile-section{max-width:735px;margin:0 auto 55px}
+.lx-ig-profile-head{text-align:center;margin-bottom:22px}
+.lx-ig-profile-kicker{color:#a28251;font-size:10px;font-weight:700;letter-spacing:.24em}
+.lx-ig-profile-head p{color:#6e655d;font-size:15px;margin:10px 0 0}
+.lx-ig-profile-frame{min-height:330px;border:1px solid #e6d9c5;border-radius:16px;padding:22px;background:linear-gradient(145deg,#fefefe,#fbf6ee);box-shadow:0 14px 46px #5c402211;display:flex;justify-content:center;align-items:flex-start}
+.lx-ig-official-profile{margin:0 auto!important;min-width:0!important;max-width:540px!important;width:100%!important}
+.lx-ig-profile-fallback{padding:34px 16px;display:flex;justify-content:center;align-items:center;gap:25px;flex-wrap:wrap}
+.lx-ig-profile-avatar{width:95px;height:95px;flex:0 0 95px;border:2px solid #b99760;border-radius:50%;display:grid;place-items:center;font:500 33px Georgia,serif;color:#a18048;background:#fff8ec}
+.lx-ig-profile-copy{display:flex;flex-direction:column;align-items:flex-start;gap:7px;max-width:360px}
+.lx-ig-profile-copy strong{font:500 28px/1.1 'Cormorant Garamond',Georgia,serif;color:#372c24}
+.lx-ig-profile-copy span{color:#a28251;font-size:13px}
+.lx-ig-profile-copy p{font-size:14px;color:#685f56;line-height:1.55;margin:5px 0 12px}
+.lx-ig-profile-copy .lx-btn{font-size:13px}
+.lx-ig-curated-posts{border-top:1px solid #e8dece;padding-top:43px}
+.lx-ig-curated-posts h2{font:500 clamp(29px,3.6vw,44px)/1.1 'Cormorant Garamond',Georgia,serif;color:#3a2f26;text-align:center;margin-bottom:24px}
+.lx-ig-privacy-note{max-width:830px;margin:30px auto 0}
+@media(max-width:560px){.lx-ig-official-page{padding:35px 14px 65px}.lx-ig-profile-frame{padding:12px;min-height:290px}.lx-ig-profile-fallback{padding:25px 12px;gap:14px;text-align:center}.lx-ig-profile-copy{align-items:center}.lx-ig-profile-avatar{width:72px;height:72px;flex-basis:72px;font-size:25px}}
+
+/* Instagram v0.8.8 — painel ampliado, galeria de 20 posts por página */
+.lx-ig-official-page{max-width:1600px;width:100%;margin:auto;padding:50px clamp(16px,3vw,50px) 85px}
+.lx-ig-official-page .lx-ux-section-inner{max-width:1510px;width:100%}
+.lx-ig-profile-section{max-width:940px;margin:0 auto 65px}
+.lx-ig-profile-frame{min-height:400px;padding:35px}
+.lx-ig-manual-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.lx-ig-curated-posts{padding-top:50px}
+.lx-ig-grid-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:27px}
+.lx-ig-grid-heading h2{margin:6px 0 0;text-align:left}
+.lx-ig-grid-counter{color:#71685d;font-size:13px;margin:0}
+.lx-ig-manual-post{min-width:0;max-width:100%;background:#fff;border-radius:13px;border:1px solid #e9dece;box-shadow:0 6px 22px #402b150a;padding:8px}
+.lx-ig-manual-post .instagram-media{max-width:100%!important;min-width:0!important}
+.lx-ig-pagination{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;margin-top:38px;padding-top:24px;border-top:1px solid #e6ddcf}
+.lx-ig-pagination>span{color:#726657;font-size:14px}
+.lx-ig-page-link{color:#926c3d;text-decoration:underline;font-weight:600}
+.lx-ig-no-posts{max-width:760px;margin:0 auto;padding:45px 24px;text-align:center;background:#fdf9f3;border:1px solid #e9dac6;border-radius:15px}
+.lx-ig-no-posts h2{margin:0 0 10px}
+.lx-ig-no-posts p{color:#65594c;line-height:1.75}
+.lx-ig-no-posts a{color:#8e693b;font-weight:600}
+.lx-ig-bulk-panel textarea{width:100%;max-width:100%;min-height:245px;border:1px solid #d8cab8;border-radius:8px;padding:13px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.65;resize:vertical}
+@media(max-width:1200px){.lx-ig-manual-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lx-ig-official-page{padding-inline:24px}}
+@media(max-width:760px){.lx-ig-manual-grid{grid-template-columns:1fr}.lx-ig-profile-frame{min-height:330px;padding:12px}.lx-ig-official-page{padding-inline:14px}.lx-ig-pagination{flex-direction:column}.lx-ig-profile-section{margin-bottom:35px}}
+
+
+/* v0.8.8 — 20 espaços visíveis mesmo antes de cadastrar os links */
+.lx-ig-slot{min-height:440px;display:flex;align-items:center;justify-content:center;padding:24px;
+  background:linear-gradient(145deg,#fffdfa 0%,#f9f3ea 100%);border:1px dashed #d5bea0}
+.lx-ig-slot-inner{max-width:250px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;color:#78685a}
+.lx-ig-slot-icon{width:78px;height:78px;border:1px solid #e1d0ba;border-radius:50%;
+  display:grid;place-items:center;color:#ad8c5f;background:#fffaf5}
+.lx-ig-slot-number{font-size:11px;letter-spacing:.18em;font-weight:700;color:#b28e58}
+.lx-ig-slot-inner strong{font:500 29px/1.12 'Cormorant Garamond',Georgia,serif;color:#645247}
+.lx-ig-slot-inner p{font-size:13px;line-height:1.65;margin:0;color:#8b7a68}
+@media(max-width:760px){.lx-ig-slot{min-height:370px}}

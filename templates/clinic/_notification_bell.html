@@ -1,0 +1,30 @@
+{% if bell_visible %}
+<details class="lx-notification-bell" id="lombardi-notification-bell" data-api="{% url 'notifications_more' %}" data-offset="{{ bell_next_offset }}" data-read-url-prefix="/notificacoes/" data-current-url="{{ request.get_full_path }}">
+ <summary aria-label="Notificações{% if bell_unread_count %}: {{ bell_unread_count }} não lidas{% endif %}" aria-haspopup="true" title="Abrir notificações">
+  <svg aria-hidden="true"><use href="#lx-bell"/></svg>
+  {% if bell_unread_count %}<span class="lx-notification-count" aria-label="{{ bell_unread_count }} notificações não lidas">{% if bell_unread_count > 99 %}99+{% else %}{{ bell_unread_count }}{% endif %}</span>{% endif %}
+ </summary>
+ <section class="lx-notification-panel" aria-label="Lista de notificações">
+  <form class="lx-notification-csrf" hidden>{% csrf_token %}</form>
+  <header class="lx-notification-panel-head">
+   <div><strong>Notificações</strong><small>{% if bell_unread_count %}{{ bell_unread_count }} não lida{{ bell_unread_count|pluralize:'s' }}{% else %}Tudo em dia{% endif %}</small></div>
+   {% if bell_unread_count %}<form method="post" action="{% url 'notifications_read_all' %}">{% csrf_token %}<input type="hidden" name="return_to" value="{{ request.get_full_path }}"><button type="submit" class="lx-notification-clear">Marcar todas como lidas</button></form>{% endif %}
+  </header>
+  <div class="lx-notification-items" id="lombardi-notification-items">
+   {% for notice in bell_notifications %}
+   <article class="lx-notification-item {% if not notice.read_at %}is-unread{% endif %}">
+    <span class="lx-notification-dot" aria-hidden="true"></span>
+    <div class="lx-notification-copy"><strong>{{ notice.title }}</strong><p>{{ notice.message }}</p><time datetime="{{ notice.created_at|date:'c' }}">{{ notice.created_at|date:'d/m/Y H:i' }}</time>
+     {% if not notice.read_at or notice.link %}<div class="lx-notification-actions">
+     {% if notice.link %}<form method="post" action="{% url 'notification_open' notice.pk %}">{% csrf_token %}<button type="submit">Abrir assunto</button></form>{% endif %}
+     {% if not notice.read_at %}<form method="post" action="{% url 'notification_read' notice.pk %}">{% csrf_token %}<input type="hidden" name="return_to" value="{{ request.get_full_path }}"><button type="submit">Marcar como lida</button></form>{% endif %}
+     </div>{% endif %}
+    </div>
+   </article>
+   {% empty %}<p class="lx-notification-empty">Nenhuma notificação por enquanto.</p>{% endfor %}
+  </div>
+  {% if bell_has_more %}<button type="button" class="lx-notification-more" id="lombardi-notification-more">Carregar notificações anteriores</button>{% endif %}
+  <p class="lx-notification-footer">Seus avisos de consultas, documentos e solicitações ficam aqui.</p>
+ </section>
+</details>
+{% endif %}

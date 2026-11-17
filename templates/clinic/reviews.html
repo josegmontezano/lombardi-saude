@@ -1,0 +1,36 @@
+{% extends 'clinic/base.html' %}{% load static %}
+{% block title %}Avalie seu atendimento | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-reviews-page">
+ <div class="lx-review-head"><p class="lx-eyebrow">SUA EXPERIÊNCIA IMPORTA</p><h1>Avalie o seu atendimento</h1><p>Compartilhe sua experiência com a Lombardi Saúde. Escolha a unidade e dê uma nota de <strong>0 (péssimo) a 5 (ótimo)</strong> para cada etapa. Identifique-se para que nossa equipe possa validar seu atendimento. Sua identificação será mantida em sigilo.</p></div>
+ <div class="lx-review-layout lx-review-layout-solo"><section class="lx-review-card">
+ <h2>Como foi sua experiência?</h2>
+ <form method="post" action="{% url 'review_submit' %}" class="lx-review-form">{% csrf_token %}
+ {% if form.non_field_errors %}<div class="lx-review-error">{{ form.non_field_errors }}</div>{% endif %}
+ <div class="lx-review-identity">
+ <label for="id_patient_name">Nome completo <b>*</b></label><input name="patient_name" id="id_patient_name" type="text" maxlength="140" minlength="3" autocomplete="name" placeholder="Informe nome e sobrenome" required value="{{ form.patient_name.value|default:'' }}">{{ form.patient_name.errors }}
+ <label for="id_patient_email">E-mail <b>*</b></label><input name="patient_email" id="id_patient_email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com" required value="{{ form.patient_email.value|default:'' }}">{{ form.patient_email.errors }}
+ <label for="id_patient_phone">Telefone com DDD <b>*</b></label><input name="patient_phone" id="id_patient_phone" type="tel" autocomplete="tel" maxlength="20" placeholder="(00) 00000-0000" required value="{{ form.patient_phone.value|default:'' }}">{{ form.patient_phone.errors }}
+ </div>
+ <label for="id_unit">Unidade atendida <b>*</b></label><select name="unit" id="id_unit" required><option value="">Escolha a unidade</option>{% for value,label in form.fields.unit.choices %}{% if value %}<option value="{{ value }}" {% if form.unit.value == value %}selected{% endif %}>{{ label }}</option>{% endif %}{% endfor %}</select>
+ {% if form.unit.errors %}<small class="lx-review-error">{{ form.unit.errors }}</small>{% endif %}
+ {% for key,label in fields %}
+ <fieldset class="lx-score-set"><legend>{{ label }}</legend><div class="lx-rating-scale"><span>Péssimo</span><span>Ótimo</span></div><div class="lx-score-options">
+ {% for score in scores %}<label class="lx-score-choice"><input type="radio" name="{{ key }}" value="{{ score }}" required><span>{{ score }}</span></label>{% endfor %}
+ </div>{% if key == 'reception' %}{{ form.reception.errors }}{% elif key == 'nursing_technician' %}{{ form.nursing_technician.errors }}{% elif key == 'nursing' %}{{ form.nursing.errors }}{% elif key == 'doctor' %}{{ form.doctor.errors }}{% endif %}</fieldset>
+ {% endfor %}
+ <label for="id_private_comment">Quer deixar uma sugestão? (Opcional, visível apenas à gestão)</label><textarea name="private_comment" id="id_private_comment" rows="3" maxlength="750" placeholder="Seu comentário será encaminhado somente para a equipe de gestão.">{{ form.private_comment.value|default:'' }}</textarea>
+ <div class="lx-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+ <button class="lx-btn lx-btn-gold lx-review-submit" type="submit">Enviar minha avaliação</button>
+ <p class="lx-review-footnote">Campos marcados com * são obrigatórios. Nome, e-mail e telefone serão acessíveis somente à equipe autorizada. As avaliações são revisadas antes da publicação. O comentário é opcional e privado. Não inclua exames ou informações clínicas neste campo. <a href="{% url 'privacy' %}">Aviso de privacidade</a>.</p>
+ </form>
+ </section>
+ </div>
+ {% if approved_reviews %}
+ <section class="lx-review-approved"><p class="lx-eyebrow">AVALIAÇÕES APROVADAS</p><h2>Experiências compartilhadas</h2><p>Somente avaliações autorizadas pela equipe aparecem aqui. Dados de identificação e comentários privados não são divulgados.</p><div class="lx-review-approved-grid">
+ {% for item in approved_reviews %}<article class="lx-review-card"><strong>{{ item.get_unit_display }}</strong><span class="lx-review-date">{{ item.reviewed_at|date:"d/m/Y" }}</span><div class="lx-review-ratings"><p>Recepção: {{ item.reception }}/5</p><p>Técnico de Enfermagem: {{ item.nursing_technician }}/5</p><p>Enfermagem: {{ item.nursing }}/5</p><p>Médico: {{ item.doctor }}/5</p></div></article>{% endfor %}
+ </div></section>
+ {% endif %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'clinic/base.html' %}{% block title %}Meus Protocolos | Lombardi Saúde{% endblock %}{% block content %}
+<main class="wrap page narrow"><div class="eyebrow">PORTAL DO PACIENTE</div><h1>Meus Protocolos</h1><p class="lead">Consulte os protocolos indicados individualmente pelo seu médico e acompanhe o andamento.</p>
+<div class="notice">Nenhum protocolo é indicado automaticamente ou sem necessidade. A decisão depende da avaliação profissional e das contraindicações.</div>
+{% if not can_view %}<div class="notice">É necessária a validação de identidade pela clínica para visualizar protocolos pessoais.</div>{% else %}<section class="card">
+{% for item in orders %}<article class="item"><div><h3>{{ item.protocol.name }}</h3><p>Solicitado em {{ item.created_at|date:'d/m/Y' }} · Médico responsável: {{ item.prescribed_by.get_full_name|default:item.prescribed_by.username }}</p>
+{% if item.scheduled_for %}<p>Data prevista: {{ item.scheduled_for|date:'d/m/Y' }}</p>{% endif %}{% if item.instructions %}<p>{{ item.instructions|linebreaksbr }}</p>{% endif %}</div><span class="pill">{{ item.get_status_display }}</span></article>{% empty %}<p class="empty">Ainda não há protocolos atribuídos à sua conta.</p>{% endfor %}</section>{% endif %}
+</main>{% endblock %}

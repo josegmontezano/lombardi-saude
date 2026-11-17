@@ -1,0 +1,51 @@
+{% extends 'clinic/base.html' %}{% load static vlog_format %}
+{% block title %}{{ video.title }} | Reportagens da Dra. Isabella Lombardi{% endblock %}
+{% block content %}
+<article class="lx-report" itemscope itemtype="https://schema.org/Article">
+ <div class="lx-report-container">
+  <nav class="lx-report-breadcrumb" aria-label="Caminho de navegação"><a href="{% url 'home' %}">Início</a><span aria-hidden="true">›</span><a href="{% url 'vlog_index' %}">Tirando Dúvidas com a Lombardi Saúde</a><span aria-hidden="true">›</span><span aria-current="page">{{ video.title|truncatechars:58 }}</span></nav>
+  <header class="lx-report-header">
+    <p class="lx-report-label">EDUCAÇÃO EM SAÚDE <span aria-hidden="true">·</span> {{ video.get_category_display|upper }}</p>
+    <h1 itemprop="headline">{{ video.title }}</h1>
+    {% if video.summary %}<p class="lx-report-deck" itemprop="description">{{ video.summary }}</p>{% endif %}
+    <div class="lx-report-byline">
+     <span class="lx-report-avatar" aria-hidden="true">IL</span>
+     <div class="lx-report-author"><p><strong itemprop="author">Dra. Isabella Lombardi</strong> <span>· Lombardi Saúde</span></p><p><time itemprop="datePublished" datetime="{{ video.publish_at|date:'c' }}">Publicado em {{ video.publish_at|date:'d/m/Y' }}</time></p></div>
+    </div>
+  </header>
+
+  <aside class="lx-report-callout" aria-label="Agendamento de consulta">
+   <p><strong>Deseja uma avaliação individualizada?</strong> Nossa equipe pode orientar sobre as consultas nas unidades de Campo Grande e Alegre. As informações desta reportagem não substituem uma consulta médica.</p>
+   <div class="lx-report-callout-actions">
+    <a class="lx-report-button lx-report-button-primary" target="_blank" rel="noopener noreferrer" href="https://wa.me/5521986825542?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Lombardi%20Sa%C3%BAde%2C%20unidade%20Campo%20Grande.">Agendar em Campo Grande <span aria-hidden="true">↗</span></a>
+    <a class="lx-report-button lx-report-button-outline" target="_blank" rel="noopener noreferrer" href="https://wa.me/5528999468688?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Lombardi%20Sa%C3%BAde%2C%20unidade%20Alegre.">Agendar em Alegre <span aria-hidden="true">↗</span></a>
+   </div>
+  </aside>
+
+  <div class="lx-report-content" itemprop="articleBody">
+   {% if video.cover_url %}<figure class="lx-report-cover"><img src="{{ video.cover_url }}" alt="Imagem de capa: {{ video.title }}" loading="lazy"></figure>{% endif %}
+   {% if video.private_media_path %}
+    <div class="lx-report-media"><div class="lx-vlog-player"><video id="private-vlog-player" controls controlsList="nodownload noplaybackrate" disablePictureInPicture preload="none" playsinline oncontextmenu="return false" data-playback-ticket="{{ private_playback_token }}" aria-label="Vídeo da reportagem {{ video.title }}">Seu navegador não suporta a reprodução.</video></div><p class="lx-private-playback-message" id="private-playback-message">Preparando a reprodução protegida...</p></div>
+   {% elif video.media_url %}<div class="lx-report-media"><div class="lx-vlog-player"><video controls controlsList="nodownload noplaybackrate" disablePictureInPicture preload="metadata" playsinline oncontextmenu="return false" src="{{ video.media_url }}" aria-label="Vídeo da reportagem {{ video.title }}">Seu navegador não suporta a reprodução.</video></div></div>
+   {% elif video.embed_url %}<div class="lx-report-media"><div class="lx-vlog-player"><iframe src="{{ video.embed_url }}" title="Vídeo: {{ video.title }}" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+   {% elif video.video_url %}<div class="lx-report-media"><div class="lx-vlog-external"><p>Assista ao vídeo na plataforma de origem.</p><a class="lx-report-button lx-report-button-primary" href="{{ video.video_url }}" target="_blank" rel="noopener noreferrer">Abrir vídeo original <span aria-hidden="true">↗</span></a></div></div>{% endif %}
+   {% if video.body %}<div class="lx-report-prose">{{ video.body|vlog_article }}</div>{% elif not video.media_url and not video.private_media_path and not video.video_url %}<p>Em breve, novas informações sobre este tema.</p>{% endif %}
+  </div>
+
+  <aside class="lx-report-medical-note"><strong>Orientação responsável.</strong> Este conteúdo tem finalidade informativa e não substitui avaliação clínica, diagnóstico ou prescrição. Qualquer tratamento depende das necessidades e contraindicações de cada paciente.</aside>
+
+  <section class="lx-report-bottom-cta" aria-labelledby="lx-report-booking-title">
+   <p class="lx-report-label">CUIDADO PERSONALIZADO · LOMBARDI SAÚDE</p>
+   <h2 id="lx-report-booking-title">Agende sua consulta</h2>
+   <p>Gostaria de conversar com nossa equipe? Escolha a unidade e você será direcionado diretamente ao WhatsApp para solicitar seu agendamento.</p>
+   <div class="lx-report-callout-actions">
+    <a class="lx-report-button lx-report-button-primary" target="_blank" rel="noopener noreferrer" href="https://wa.me/5521986825542?text=Ol%C3%A1%21%20Gostaria%20de%20marcar%20uma%20consulta%20na%20Lombardi%20Sa%C3%BAde%20em%20Campo%20Grande.">Campo Grande/RJ · (21) 98682-5542 <span aria-hidden="true">↗</span></a>
+    <a class="lx-report-button lx-report-button-outline" target="_blank" rel="noopener noreferrer" href="https://wa.me/5528999468688?text=Ol%C3%A1%21%20Gostaria%20de%20marcar%20uma%20consulta%20na%20Lombardi%20Sa%C3%BAde%20em%20Alegre.">Alegre/ES · (28) 99946-8688 <span aria-hidden="true">↗</span></a>
+   </div>
+  </section>
+  <p class="lx-report-back"><a href="{% url 'vlog_index' %}">← Voltar a todas as reportagens</a></p>
+ </div>
+  {% include 'clinic/_share_buttons.html' with share_title=video.title %}
+</article>
+{% if video.private_media_path %}<script defer src="{% static 'js/private-vlog-player.js' %}?v=083"></script>{% endif %}
+{% endblock %}

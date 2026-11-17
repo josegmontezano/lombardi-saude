@@ -1,0 +1,13 @@
+{% extends 'clinic/base.html' %}{% block title %}Publicações do Instagram | Lombardi Saúde{% endblock %}{% block content %}
+<section class="lx-professional-shell"><div class="lx-professional-top"><div><p class="lx-eyebrow">ÁREA PROFISSIONAL · REDES SOCIAIS</p><h1>Publicações do Instagram</h1><p class="lx-professional-note">Adicione links de posts e Reels públicos de @lombardi.saude. Eles aparecerão incorporados na página do Instagram do site, sem conectar a conta ou usar a API da Meta.</p></div><a href="{% url 'professional_posts' %}" class="lx-btn lx-btn-outline">Voltar à gestão</a></div>
+<div class="lx-ux-card"><h2>Incluir publicação</h2><form method="post" class="lx-ig-manual-form">{% csrf_token %}{{ form.non_field_errors }}<label for="id_url">Link público de post ou Reel</label>{{ form.url }}{{ form.url.errors }}<button class="lx-btn lx-btn-gold" type="submit">Adicionar ao site</button></form><p class="lx-ux-muted">Abra um post ou Reel do Instagram oficial, copie o link e cole acima. Postagens novas não são importadas automaticamente; stories não fazem parte dessa área. A publicação precisa ser pública e permitir incorporação pelo Instagram.</p></div>
+<div class="lx-ux-card lx-ig-bulk-panel"><h2>Incluir 20 ou mais publicações de uma vez</h2>
+<p>Cole links reais dos posts e Reels oficiais, <strong>um por linha</strong>. Você pode enviar até 100 links por vez, sem conectar o Instagram.</p>
+<form method="post" class="lx-ig-manual-form">{% csrf_token %}<input type="hidden" name="operation" value="bulk">
+{{ bulk_form.non_field_errors }}
+<label for="{{ bulk_form.links.id_for_label }}">Links de publicações</label>
+{{ bulk_form.links }}{{ bulk_form.links.errors }}
+<button class="lx-btn lx-btn-gold" type="submit">Adicionar publicações em lote</button>
+</form><p class="lx-ux-muted">O site mostra 20 publicações por página, com navegação para as próximas. Links repetidos não criam cópias. Os vídeos dependem da autorização de incorporação do Instagram.</p>
+</div>
+<div class="lx-ux-card"><h2>Links incluídos ({{ total_posts }})</h2>{% for item in posts %}<div class="lx-ig-admin-row"><a href="{{ item.permalink }}" target="_blank" rel="noopener noreferrer">{{ item.permalink }}</a><form method="post" action="{% url 'professional_instagram_remove' item.pk %}">{% csrf_token %}<button type="submit" class="lx-btn lx-btn-outline">Retirar do site</button></form></div>{% empty %}<p class="lx-professional-note">Nenhuma publicação cadastrada ainda.</p>{% endfor %}<p><a href="{% url 'instagram_feed' %}" target="_blank" rel="noopener noreferrer">Visualizar a página pública ↗</a></p></div></section>{% endblock %}

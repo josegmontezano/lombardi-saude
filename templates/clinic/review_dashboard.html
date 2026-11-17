@@ -1,0 +1,59 @@
+{% extends 'clinic/base.html' %}{% load static %}
+{% block title %}Painel de Avaliações e NPS Adaptado | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-review-dashboard">
+ <header class="lx-review-head"><p class="lx-eyebrow">ADMINISTRAÇÃO · QUALIDADE ASSISTENCIAL</p><h1>Painel de avaliações e NPS adaptado</h1><p>Indicadores calculados exclusivamente com avaliações recebidas. NPS adaptado usa a escala 0–5: promotores = 5, neutros = 4, detratores = 0–3. Não é comparável ao NPS tradicional de 0–10.</p>
+ <nav class="lx-review-tabs" aria-label="Selecionar unidade"><a href="?unit=geral" {% if unit == 'geral' %}aria-current="page"{% endif %}>Geral</a><a href="?unit=campo_grande" {% if unit == 'campo_grande' %}aria-current="page"{% endif %}>Campo Grande</a><a href="?unit=alegre" {% if unit == 'alegre' %}aria-current="page"{% endif %}>Alegre</a></nav></header>
+ <div class="lx-review-private-note"><strong>Indicadores privados:</strong> estas médias consideram todas as avaliações recebidas, inclusive as pendentes ou não aprovadas para exibição pública, evitando distorcer os dados gerenciais. <a href="{% url 'review_moderation' %}">Analisar avaliações ({{ pending_count }} pendentes)</a></div>
+ <div class="lx-review-metrics">
+ <article><small>AVALIAÇÕES RECEBIDAS</small><strong id="lr-count">{{ stats.count }}</strong><span>respostas com os quatro setores</span></article>
+ <article><small>NPS ADAPTADO DA CLÍNICA</small><strong id="lr-nps">{% if stats.nps != None %}{{ stats.nps|floatformat:1 }}{% else %}—{% endif %}</strong><span>Escala -100 a +100, média dos quatro setores</span></article>
+ <article><small>NOTAS POR SETOR</small><strong>0–5</strong><span>Sem simulações ou avaliações fictícias</span></article>
+ </div>
+ <div class="lx-review-dashboard-grid">
+ <section class="lx-review-card"><h2>NPS adaptado por setor</h2><div id="lr-sector-grid">{% for sector in stats.sectors %}<div class="lx-sector-row"><span>{{ sector.label }}</span><b>{% if sector.nps != None %}{{ sector.nps|floatformat:1 }}{% else %}—{% endif %}</b><small>{% if sector.average != None %}Nota {{ sector.average|floatformat:2 }}/5{% else %}Sem dados{% endif %}</small></div>{% endfor %}</div></section>
+ <section class="lx-review-card"><h2>Evolução mensal do NPS adaptado</h2><div id="lr-graph" class="lx-review-chart" role="img" aria-label="Gráfico de evolução mensal do NPS adaptado"><p>Carregando dados...</p></div><p class="lx-review-footnote">Meses sem respostas são apresentados sem valor; não há projeções.</p></section>
+ </div>
+ <section class="lx-review-card"><h2>Evolução das notas por setor</h2><div class="lx-table-scroll"><table class="lx-review-table"><thead><tr><th>Mês</th><th>Avaliações</th><th>NPS geral</th><th>Recepção</th><th>Téc. Enfermagem</th><th>Enfermagem</th><th>Médico</th></tr></thead><tbody id="lr-monthly"></tbody></table></div></section>
+ <section class="lx-review-card"><h2>Últimas avaliações recebidas</h2><div class="lx-table-scroll"><table class="lx-review-table"><thead><tr><th>Data</th><th>Unidade</th><th>Nome</th><th>Contato</th><th>Situação</th><th>Recepção</th><th>Técnico</th><th>Enfermagem</th><th>Médico</th><th>Comentário restrito</th></tr></thead><tbody>{% for x in recent %}<tr><td>{{ x.created_at|date:'d/m/Y H:i' }}</td><td>{{ x.get_unit_display }}</td><td>{{ x.patient_name|default:"—" }}</td><td>{{ x.patient_email|default:"—" }}<br>{{ x.patient_phone|default:"—" }}</td><td>{{ x.get_status_display }}</td><td>{{ x.reception }}</td><td>{{ x.nursing_technician }}</td><td>{{ x.nursing }}</td><td>{{ x.doctor }}</td><td>{{ x.private_comment|default:'—' }}</td></tr>{% empty %}<tr><td colspan="10">Ainda não existem avaliações nesta unidade.</td></tr>{% endfor %}</tbody></table></div></section>
+ <p class="lx-review-footnote">Atualização automática a cada 60 segundos enquanto o painel estiver aberto. Acesso exclusivo aos gestores autorizados. Os comentários não aparecem no site público.</p>
+</section>
+{{ series|json_script:"lr-data" }}
+<script>
+(function(){
+ const series=JSON.parse(document.getElementById('lr-data').textContent);
+ const fields=[['reception','Recepção'],['nursing_technician','Téc. enfermagem'],['nursing','Enfermagem'],['doctor','Médico']];
+ function txt(v,d=1){return v===null || v===undefined?'—':Number(v).toFixed(d)}
+ function draw(data){
+  document.getElementById('lr-monthly').innerHTML=data.map(x=>'<tr><td>'+x.month+'</td><td>'+x.count+'</td><td>'+txt(x.nps)+'</td>'+fields.map(f=>'<td>'+txt(x[f[0]],2)+'</td>').join('')+'</tr>').join('');
+  const width=730,height=268,left=40,top=28,plotW=width-64,plotH=height-69;
+  let circles='',segments=[],segment=[];
+  for(let i=0;i<data.length;i++){
+   let x=left+i*(plotW/Math.max(1,data.length-1)),n=data[i].nps;
+   if(n===null){if(segment.length){segments.push(segment.join(' '));segment=[];}continue;}
+   let y=top+(100-n)/200*plotH;
+   segment.push(x.toFixed(1)+','+y.toFixed(1));
+   circles+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4" fill="#b48a4a"><title>'+data[i].month+': NPS '+n+'</title></circle>';
+  }
+  if(segment.length)segments.push(segment.join(' '));
+  let grid=[-100,-50,0,50,100].map(v=>{let y=top+(100-v)/200*plotH;return '<line x1="'+left+'" x2="'+(left+plotW)+'" y1="'+y+'" y2="'+y+'" stroke="#e5ded6"/><text x="1" y="'+(y+4)+'" font-size="12" fill="#68625a">'+v+'</text>';}).join('');
+  let axis=data.map((v,i)=>'<text x="'+(left+i*plotW/Math.max(1,data.length-1))+'" y="'+(height-13)+'" text-anchor="middle" font-size="10" fill="#68625a">'+v.month+'</text>').join('');
+  let lines=segments.map(seg=>'<polyline points="'+seg+'" fill="none" stroke="#b48a4a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>').join('');
+  document.getElementById('lr-graph').innerHTML='<svg viewBox="0 0 '+width+' '+height+'" role="img" aria-label="NPS adaptado por mês, de -100 a 100" style="width:100%;height:auto">'+grid+lines+circles+axis+'</svg>';
+ }
+ draw(series);
+ async function refresh(){
+  if(document.hidden)return;
+  try{
+   const res=await fetch(window.location.pathname+window.location.search+(window.location.search?'&':'?')+'format=json',{cache:'no-store'});
+   if(!res.ok)return;const j=await res.json();
+   document.getElementById('lr-count').textContent=j.stats.count;
+   document.getElementById('lr-nps').textContent=txt(j.stats.nps);
+   document.getElementById('lr-sector-grid').innerHTML=j.stats.sectors.map(x=>'<div class="lx-sector-row"><span>'+fields.find(f=>f[0]===x.key)[1]+'</span><b>'+txt(x.nps)+'</b><small>'+ (x.average===null?'Sem dados':'Nota '+txt(x.average,2)+'/5')+'</small></div>').join('');
+   draw(j.series);
+  }catch(e){}
+ }
+ window.setInterval(refresh,60000);
+})();
+</script>
+{% endblock %}

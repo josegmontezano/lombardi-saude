@@ -1,0 +1,12 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Minha conta | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page narrow"><div class="eyebrow">PORTAL DO PACIENTE</div><h1>Minha conta</h1>
+<div class="card"><h2>Dados de acesso</h2>
+<p><strong>Nome:</strong> {{ user.get_full_name|default:user.username }}</p>
+<p><strong>E-mail:</strong> {{ user.email }}</p>
+<p><strong>Celular:</strong> {{ account.phone }}</p>
+<p class="muted">A ficha clínica interna, que inclui CPF, CNS, endereço e histórico de saúde, é preenchida exclusivamente pela equipe autorizada. Para corrigir a identificação cadastral, procure a recepção.</p>
+<h2>Atualizar telefone</h2><form method="post" class="form">{% csrf_token %}{{ form.as_p }}<button class="button" type="submit">Salvar celular</button></form>
+</div></main>
+{% endblock %}

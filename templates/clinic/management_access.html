@@ -1,0 +1,26 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Gestão de cadastros | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-review-dashboard"><header class="lx-review-head"><p class="lx-eyebrow">AMBIENTE PRIVADO · GESTÃO</p>
+<h1>Gestão de acessos</h1>
+<p><strong>{{ pending_count }}</strong> solicitação(ões) aguardando sua aprovação. Nenhuma conta solicitante acessa o sistema antes de sua decisão. Os cargos são definidos somente aqui.</p>
+<div class="lx-review-tabs"><a href="{% url 'management_access' %}">Gestão de acessos</a><a href="{% url 'professional_posts' %}">Publicações</a><a href="{% url 'review_dashboard' %}">Avaliações e NPS</a></div>
+</header><section class="lx-review-card"><h2>Solicitações de cadastro</h2>
+<div class="lx-table-scroll"><table class="lx-review-table"><thead><tr><th>Solicitação</th><th>Nome e e-mail</th><th>Função solicitada</th><th>Situação</th><th>Aprovação da gestão</th></tr></thead><tbody>
+{% for item in requests %}
+<tr>
+<td>{{ item.created_at|date:"d/m/Y H:i" }}</td>
+<td><strong>{{ item.user.first_name }}</strong><p>{{ item.user.email }}</p></td>
+<td>{{ item.get_requested_job_display }}</td>
+<td>{{ item.get_status_display }}{% if item.reviewed_by %}<p><small>{{ item.reviewed_at|date:"d/m/Y H:i" }} · {{ item.reviewed_by.username }}</small></p>{% endif %}</td>
+<td>{% if item.status == 'pending' %}
+<form method="post" action="{% url 'management_decision' item.id %}" class="lx-master-decision">{% csrf_token %}
+<label>Função autorizada <select name="job" required><option value="">Selecione</option>{% for value,label in jobs %}<option value="{{ value }}" {% if item.requested_job == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+<div class="lx-moderation-actions"><button type="submit" name="decision" value="approved">Aprovar cadastro</button>
+<button type="submit" name="decision" value="rejected">Recusar cadastro</button></div>
+</form>
+{% else %}Decisão registrada{% endif %}</td>
+</tr>
+{% empty %}<tr><td colspan="5">Nenhum cadastro solicitado até o momento.</td></tr>{% endfor %}
+</tbody></table></div></section></section>
+{% endblock %}

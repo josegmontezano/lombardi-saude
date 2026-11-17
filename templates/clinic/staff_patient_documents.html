@@ -1,0 +1,16 @@
+{% extends 'clinic/base.html' %}
+{% block title %}{{ page_title }} | Equipe Lombardi{% endblock %}
+{% block content %}
+<main class="wrap page narrow"><div class="eyebrow">PORTAL PROFISSIONAL · PDF CLÍNICO</div><h1>{{ page_title }}</h1>
+<p class="lead">Paciente: {{ patient.get_full_name|default:patient.email }} · {{ patient.email }}</p>
+<div class="notice"><strong>Acesso clínico restrito.</strong> Somente disponibilize PDFs efetivamente emitidos e autorizados pelo profissional responsável. Arquivos são registrados para auditoria.</div>
+<section class="card"><h2>Incluir documento</h2>
+{% if kind == 'prescription' %}<p class="notice"><strong>Receita: </strong>envie o PDF original efetivamente emitido pelo profissional habilitado e transcreva seu conteúdo fielmente. O paciente lerá a transcrição, mas imprimirá sempre o arquivo original. Não altere prescrições no texto.</p>{% endif %}<form method="post" enctype="multipart/form-data" class="form">{% csrf_token %}{{ form.as_p }}
+<button class="button" type="submit">Enviar PDF ao paciente</button></form></section>
+<section class="card"><h2>Arquivos publicados</h2>{% for doc in documents %}
+<div class="item"><div><strong>{{ doc.title }}</strong>{% if kind == 'prescription' %}{% if doc.transcription %}<p><small>Transcrição disponível no Portal do Paciente.</small></p>{% else %}<p><small>Receita anterior sem transcrição; PDF original preservado.</small></p>{% endif %}{% endif %}<p>{{ doc.created_at|date:'d/m/Y H:i' }} · Por {{ doc.uploaded_by.get_full_name|default:doc.uploaded_by.username }}</p></div>
+<div class="actions"><a class="outline-button" href="{% url 'staff_download_document' doc.pk %}">Baixar</a>
+<form method="post" action="{% url 'staff_archive_document' doc.pk %}" class="form">{% csrf_token %}<button class="outline-button" type="submit">Retirar publicação</button></form></div></div>
+{% empty %}<p class="empty">Nenhum arquivo publicado.</p>{% endfor %}</section>
+<div class="actions"><a class="outline-button" href="{% url 'staff_patient_search' %}?email={{ patient.email|urlencode }}">Voltar ao paciente</a></div></main>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'clinic/base.html' %}{% block title %}Portal da Equipe | Lombardi Saúde{% endblock %}{% block content %}
+<main class="wrap page"><div class="eyebrow">PORTAL DO FUNCIONÁRIO · {{ job_label|upper }}</div><h1>Demandas da equipe</h1>
+<p class="lead">Olá, {{ user.first_name|default:user.username }}. Utilize somente os recursos autorizados para seu cargo.</p>
+<div class="grid three">{% if user.is_superuser or user.role == 'admin' or user.staff_job == 'doctor' %}<a class="link-card" href="{% url 'review_moderation' %}"><span>AVALIAÇÕES</span><h3>Análise profissional</h3><p>Aprovar ou não a exibição de avaliações enviadas por pacientes.</p><b>Analisar ↗</b></a>{% endif %}
+{% if user.is_superuser or user.role == 'admin' or user.staff_job == 'doctor' %}<a class="link-card" href="{% url 'review_dashboard' %}"><span>QUALIDADE · NPS</span><h3>Gestão de avaliações</h3><p>Indicadores reais de Campo Grande, Alegre e Geral.</p><b>Abrir painel ↗</b></a>{% endif %}
+
+{% if user.role == "admin" or user.staff_job == "doctor" %}<a class="link-card" href="{% url 'management_access' %}"><span>GESTÃO</span><h3>Administração da clínica</h3><p>Aprovar cadastros e gerenciar permissões profissionais.</p><b>Abrir ↗</b></a>{% endif %}
+{% if can_reception %}<a class="link-card" href="{% url 'reception_overview' %}"><span>ACOMPANHAMENTO</span><h3>Demandas de todos os setores</h3><p>Visão geral de pendências médicas, enfermagem, notas fiscais e recepção, em modo de leitura.</p><b>Acompanhar ↗</b></a>{% endif %}
+{% if can_doctor %}<a class="link-card" href="{% url 'staff_patient_search' %}"><span>MÉDICO</span><h3>Pacientes, receitas e dietas</h3><p>Anexar documentos e indicar protocolos individualizados.</p><b>Acessar ↗</b></a>{% endif %}
+{% if can_protocol_queue %}<a class="link-card" href="{% url 'staff_protocol_queue' %}"><span>ENFERMAGEM</span><h3>Protocolos a realizar</h3><p>Fila de protocolos pendentes e data prevista.</p><b>Ver fila ↗</b></a>{% endif %}
+{% if can_finance %}<a class="link-card" href="{% url 'staff_invoices' %}"><span>FINANCEIRO</span><h3>Notas fiscais</h3><p>Receber solicitações, responder e incluir PDFs de notas fiscais.</p><b>Atender ↗</b></a>{% endif %}
+{% if can_doctor %}<a class="link-card" href="{% url 'protocol_catalog' %}"><span>CLÍNICO</span><h3>Catálogo de protocolos</h3><p>Consulta aos protocolos cadastrados. Nenhum uso sem necessidade individual.</p><b>Abrir catálogo ↗</b></a>{% endif %}
+{% if user.is_superuser %}<a class="link-card" href="{% url 'dashboard' %}"><span>GERENCIAL</span><h3>Indicadores</h3><p>Indicadores operacionais agregados.</p><b>Ver ↗</b></a>{% endif %}
+</div>
+{% if can_reception %}<section class="section-small"><h2>Consultas recentes</h2><div class="card">{% for a in recent_bookings %}<div class="item"><div><strong>{{ a.patient.get_full_name|default:a.patient.email }}</strong><p>{{ a.slot.service.title }} · {{ a.slot.starts_at|date:'d/m/Y H:i' }}</p></div><span class="pill">{{ a.get_status_display }}</span></div>{% empty %}<p class="empty">Nenhuma consulta.</p>{% endfor %}</div></section>{% endif %}
+</main>{% endblock %}

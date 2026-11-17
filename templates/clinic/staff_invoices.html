@@ -1,0 +1,28 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Solicitações de notas fiscais | Lombardi Saúde{% endblock %}
+{% block content %}
+<main class="wrap page">
+  <div class="eyebrow">FINANCEIRO · SOLICITAÇÕES</div>
+  <h1>Notas fiscais</h1>
+  <p class="lead">Todas as solicitações com data e hora da abertura, nome e CPF do paciente. A aba <strong>Dados para emissão</strong> reúne as informações fiscais.</p>
+  <div class="notice">Dados pessoais restritos ao Financeiro e ao Administrador autorizado. Não compartilhe CPF por mensagens públicas.</div>
+  <div class="card">
+  {% for item in invoices %}
+    <div class="item" style="align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <strong>{{ item.billing_data.name }}</strong>
+        <p><strong>CPF:</strong> {% if item.billing_data.cpf %}{{ item.billing_data.cpf|slice:':3' }}.{{ item.billing_data.cpf|slice:'3:6' }}.{{ item.billing_data.cpf|slice:'6:9' }}-{{ item.billing_data.cpf|slice:'9:11' }}{% else %}<span class="muted">Não cadastrado — solicitar atualização</span>{% endif %}</p>
+        <p><strong>Solicitação:</strong> {{ item.created_at|date:'d/m/Y' }} às {{ item.created_at|date:'H:i' }}</p>
+        <span class="pill">{{ item.get_status_display }}</span>
+      </div>
+      <div class="actions" style="margin:0;align-self:center;flex-wrap:wrap">
+        <a href="{% url 'staff_invoice_billing_details' item.id %}" class="outline-button">Dados para emissão</a>
+        <a href="{% url 'respond_invoice' item.id %}" class="button small">Atender solicitação</a>
+      </div>
+    </div>
+  {% empty %}
+    <p class="empty">Nenhuma solicitação de nota fiscal recebida.</p>
+  {% endfor %}
+  </div>
+</main>
+{% endblock %}

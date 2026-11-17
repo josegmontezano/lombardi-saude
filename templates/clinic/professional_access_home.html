@@ -1,0 +1,11 @@
+{% extends 'clinic/base.html' %}
+{% block title %}Área profissional | Lombardi Saúde{% endblock %}
+{% block content %}
+<section class="lx-professional-shell"><div class="lx-professional-panel">
+<p class="lx-eyebrow">ACESSO PROFISSIONAL APROVADO</p><h1>Bem-vindo à Lombardi Saúde</h1>
+<p>Seu cadastro está autorizado. As funcionalidades disponíveis dependem do seu cargo e das permissões concedidas pelo equipe de gestão.</p>
+{% if user.staff_job == 'doctor' %}<a class="lx-btn lx-btn-gold" href="{% url 'professional_posts' %}">Gerenciar publicações</a>
+<a class="lx-btn lx-btn-outline" href="{% url 'review_moderation' %}">Analisar avaliações</a>{% endif %}
+<form method="post" action="{% url 'professional_logout' %}">{% csrf_token %}<button type="submit" class="lx-btn lx-btn-outline">Sair com segurança</button></form>
+</div></section>
+{% endblock %}
