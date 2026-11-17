@@ -1,0 +1,65 @@
+name: Importar codigo da Lombardi Saude (Vercel v0.8.23)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - MontezanoColustoria
+    paths:
+      - ".github/workflows/importar-codigo.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  preparar:
+    name: Recuperar, validar e limpar o codigo
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout do repositorio privado
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Importar versao implantada, conferir e testar
+        run: python tools/import_vercel.py
+      - name: Empacotar apenas codigo e arquivos publicos
+        run: tar -czf site-source.tar.gz -C site_export .
+      - name: Transferir pacote verificado para o job de publicacao
+        uses: actions/upload-artifact@v4
+        with:
+          name: lombardi-sanitized-source
+          path: site-source.tar.gz
+          retention-days: 1
+
+  publicar:
+    name: Registrar todo o codigo no GitHub
+    needs: preparar
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    timeout-minutes: 10
+    steps:
+      - name: Checkout sem credenciais compartilhadas
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Recuperar codigo ja sanitizado
+        uses: actions/download-artifact@v4
+        with:
+          name: lombardi-sanitized-source
+          path: .imported
+      - name: Registrar arquivos do Django, imagens publicas e templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -xzf .imported/site-source.tar.gz -C .
+          git config user.name "lombardi-source-import"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api clinic lombardi static templates manage.py pyproject.toml requirements.txt package.json .python-version
+          if ! git diff --cached --quiet; then
+            git commit -m "feat: importar codigo completo da Lombardi Saude v0.8.23"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
