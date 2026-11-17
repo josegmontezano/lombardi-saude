@@ -1,5 +1,5 @@
 name: Importar codigo da Lombardi Saude (Vercel v0.8.23)
-# Importer corrigido para usar SQLite isolado durante a reconstrução
+# Importer validado para SQLite isolado e testes da versão v0.8.23
 
 on:
   workflow_dispatch:
