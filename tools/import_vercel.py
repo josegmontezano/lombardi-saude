@@ -123,6 +123,25 @@ def main():
     text = text.replace("test_master_created_by_migration", "test_master_is_provisioned_interactively")
     test.write_text(text, encoding="utf-8")
 
+    # These two tests belonged to older releases. Match v0.8.23 behavior:
+    # the secure master area is login-gated, and the Instagram tile strip
+    # was removed from the public Tirando Dúvidas page.
+    access_test = OUT / "clinic/test_access.py"
+    txt = access_test.read_text(encoding="utf-8")
+    txt = txt.replace(
+        'self.assertEqual(self.client.get("/profissional/mestre/").status_code, 404)',
+        'self.assertEqual(self.client.get("/profissional/mestre/").status_code, 302)',
+    )
+    access_test.write_text(txt, encoding="utf-8")
+
+    sidebar_test = OUT / "clinic/test_admin_sidebar.py"
+    txt = sidebar_test.read_text(encoding="utf-8")
+    txt = txt.replace('self.assertContains(r,"Publicações do Instagram")',
+                      'self.assertNotContains(r,"Publicações do Instagram")')
+    txt = txt.replace('self.assertContains(r,"https://www.instagram.com/p/ABCDE1/")',
+                      'self.assertNotContains(r,"https://www.instagram.com/p/ABCDE1/")')
+    sidebar_test.write_text(txt, encoding="utf-8")
+
     # Ensure footer contains the currently published version.
     footer = OUT / "templates/clinic/base.html"
     text = footer.read_text(encoding="utf-8")
