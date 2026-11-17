@@ -1,0 +1,18 @@
+# Lombardi Saúde — source control
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.db
+*.dump
+*.sql
+backups/
+private_media/
+media/
+*.pem
+*.key
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+staticfiles/
