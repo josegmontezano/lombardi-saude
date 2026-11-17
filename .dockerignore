@@ -1,0 +1,16 @@
+.git
+.env
+.env.*
+!.env.example
+__pycache__
+*.pyc
+.venv
+node_modules
+backups
+private_media
+media
+staticfiles
+*.dump
+*.sql
+*.pem
+*.key
